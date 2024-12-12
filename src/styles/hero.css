@@ -1,0 +1,16 @@
+.hero {
+    text-align: center;
+    background-color: #222;
+    color: white;
+    padding: 2rem 1rem;
+  }
+  
+  .hero-image {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    object-position: 60% 10%;
+  }
+  

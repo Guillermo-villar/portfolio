@@ -1,0 +1,20 @@
+.projects {
+    background-color: #333;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .project-card {
+    background-color: #444;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  

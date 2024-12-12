@@ -1,0 +1,91 @@
+.header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  height: 40px; /* Altura fija */
+}
+
+.header nav {
+  display: flex;
+  justify-content: center; /* Centra el contenido del nav */
+  width: 100%;
+  align-items: center;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  width: 100%;
+}
+
+.header nav h1 {
+  margin: 0;
+}
+
+.header ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.header a {
+  color: white;
+  text-decoration: none;
+}
+
+.header a:hover {
+  text-decoration: underline;
+}
+
+.menu {
+  display: flex;
+  justify-content: center; /* Asegura que el menú esté centrado */
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu li {
+  font-weight: bold;
+}
+
+
+/* Nuevos estilos para los enlaces sociales */
+.social-links-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Nuevos estilos para los enlaces sociales */
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: white;
+  font-size: 1.5rem; /* Tamaño más grande para los iconos */
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #0077b5; /* Ejemplo: azul de LinkedIn */
+}
+
+
+.cv-link {
+  font-family: Arial, sans-serif; /* O usa la fuente que prefieras */
+  font-weight: bold; /* Haz que se vea más destacada */
+  font-size: 1.6rem !important;  /*Igual que los iconos */
+  display: flex; /* Alineación similar a los íconos */
+  align-items: center; /* Centrado vertical */
+  vertical-align: middle; /* Centrado vertical */
+  transform: translateY(-3px); /* Mueve el texto hacia arriba */
+}
+
+.cv-link:hover {
+  color: #0077b5; /* Ejemplo: azul profesional */
+  text-decoration: none !important; /* Quita el subrayado */
+}
