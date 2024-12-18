@@ -1,18 +1,18 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaFileAlt , FaEnvelope} from 'react-icons/fa'; // Iconos de React Icons
+import { FaGithub, FaLinkedin, FaEnvelope} from 'react-icons/fa'; // Iconos de React Icons
 import '../styles/header.css';
 
 const Header: React.FC = () => {
   return (
    <header className="header">
-  <nav>
-    <div className="nav-content">
       <h1>Guillermo Villar Sánchez</h1>
-      <ul className="menu">
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
+      <nav className="nav">
+        <ul>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
       <div className="social-links-container">
         <ul className="social-links">
           <li>
@@ -37,10 +37,8 @@ const Header: React.FC = () => {
           </li>
         </ul>
       </div>
-    </div>
-  </nav>
-</header>
-  );
-};
+    </header>
+      );
+    };
 
 export default Header;

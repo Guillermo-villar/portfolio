@@ -1,25 +1,24 @@
 .header {
+  display: flex;
+  justify-content: space-between; /* Spread h1 and social links */
+  align-items: center; /* Vertical alignment */
   background-color: #333;
   color: white;
   padding: 1rem;
-  height: 40px; /* Altura fija */
+  min-height: 40px;
+  position: relative; /* Makes nav positioning relative to the header */
 }
 
 .header nav {
-  display: flex;
-  justify-content: center; /* Centra el contenido del nav */
-  width: 100%;
-  align-items: center;
+  position: absolute; /* Position nav absolutely */
+  left: 50%; /* Move to the center horizontally */
+  transform: translateX(-50%); /* Adjust to truly center */
 }
 
-.nav-content {
-  display: flex;
-  justify-content: space-between; /* Distribuye el espacio entre los elementos */
-  width: 100%;
-}
-
-.header nav h1 {
-  margin: 0;
+.header h1 {
+  font-size: 1.5rem; /* Ajusta el tamaño del texto */
+  margin: 0; /* Elimina el margen extra */
+  line-height: 1; /* Mantén la altura de línea compacta */
 }
 
 .header ul {
@@ -28,6 +27,10 @@
   gap: 1rem;
   margin: 0;
   padding: 0;
+}
+
+.nav li {
+  font-weight: bold;
 }
 
 .header a {
@@ -39,22 +42,11 @@
   text-decoration: underline;
 }
 
-.menu {
-  display: flex;
-  justify-content: center; /* Asegura que el menú esté centrado */
-  align-items: center;
-  gap: 1rem;
-}
-
-.menu li {
-  font-weight: bold;
-}
-
-
 /* Nuevos estilos para los enlaces sociales */
 .social-links-container {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 /* Nuevos estilos para los enlaces sociales */
