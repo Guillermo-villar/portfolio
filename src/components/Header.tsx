@@ -14,10 +14,10 @@ const Header: React.FC = () => {
       <h1>Guillermo Villar Sánchez</h1>
       <nav className="nav">
         <ul>
-          <li><NavLink to="" className={({ isActive }) => isActive ? "active" : ""}>
+          <li><NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
               Home
             </NavLink></li>
-          <li><NavLink to="/home" className={({ isActive }) => isActive ? "active" : ""}>
+          <li><NavLink to="/projects" className={({ isActive }) => isActive ? "active" : ""}>
               Projects
             </NavLink></li>
           <li><NavLink to="/home" className={({ isActive }) => isActive ? "active" : ""}>

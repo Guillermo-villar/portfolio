@@ -7,8 +7,7 @@ const Home: React.FC = () => {
   return (
     <div className="home">
       <Header />
-      <Hero />
-      <Projects limit={4}/>
+      <Projects />
     </div>
   );
 };

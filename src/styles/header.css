@@ -15,7 +15,7 @@
 
 .header nav {
   left: 10%; /* Centrado horizontal */
-  transform: translateX(-20%); /* Ajuste perfecto para el centrado */
+  transform: translateX(-25%); /* Ajuste perfecto para el centrado */
   display: flex;
   gap:1rem !important; /* Espaciado entre los elementos del nav */
 }
