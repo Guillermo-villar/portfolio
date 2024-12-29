@@ -1,16 +1,31 @@
-import React from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope} from 'react-icons/fa'; // Iconos de React Icons
+import React , { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaTimes} from 'react-icons/fa'; // Iconos de React Icons
 import '../styles/header.css';
 
 const Header: React.FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
    <header className="header">
       <h1>Guillermo Villar Sánchez</h1>
       <nav className="nav">
         <ul>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#about">About</a></li>
+          <li><NavLink to="" className={({ isActive }) => isActive ? "active" : ""}>
+              Home
+            </NavLink></li>
+          <li><NavLink to="/home" className={({ isActive }) => isActive ? "active" : ""}>
+              Projects
+            </NavLink></li>
+          <li><NavLink to="/home" className={({ isActive }) => isActive ? "active" : ""}>
+              Blog
+            </NavLink></li>
+          <li><NavLink to="/home" className={({ isActive }) => isActive ? "active" : ""}>
+              About
+            </NavLink></li>
         </ul>
       </nav>
       <div className="social-links-container">
@@ -36,7 +51,10 @@ const Header: React.FC = () => {
             </a>
           </li>
         </ul>
-      </div>
+        </div>      
+      {/*<button className="menu-toggle" onClick={toggleMenu}>
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </button>*/}
     </header>
       );
     };

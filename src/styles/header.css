@@ -1,35 +1,55 @@
 .header {
   display: flex;
-  justify-content: space-between; /* Spread h1 and social links */
-  align-items: center; /* Vertical alignment */
+  justify-content: space-between; /* Espacia h1 y social links */
+  align-items: center; /* Centra verticalmente */
   background-color: #333;
   color: white;
   padding: 1rem;
   min-height: 40px;
-  position: relative; /* Makes nav positioning relative to the header */
+  position: fixed; /* Fija el header */
+  top: 0;
+  width: 100%; /* Abarca todo el ancho */
+  z-index: 1000; /* Encima de otros elementos */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
 }
 
 .header nav {
-  position: absolute; /* Position nav absolutely */
-  left: 50%; /* Move to the center horizontally */
-  transform: translateX(-50%); /* Adjust to truly center */
+  left: 10%; /* Centrado horizontal */
+  transform: translateX(-20%); /* Ajuste perfecto para el centrado */
+  display: flex;
+  gap:1rem !important; /* Espaciado entre los elementos del nav */
 }
 
 .header h1 {
-  font-size: 1.5rem; /* Ajusta el tamaño del texto */
-  margin: 0; /* Elimina el margen extra */
-  line-height: 1; /* Mantén la altura de línea compacta */
+  font-size: 1.5rem;
+  margin: 0;
+  white-space: nowrap; /* Evita que el texto se corte */
 }
 
 .header ul {
   list-style: none;
   display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
+  margin:0;
+  padding-right: 1rem;
 }
 
 .nav li {
+  font-weight: bold;
+  padding-left: 1rem;
+}
+
+.nav a {
+  opacity: 0.6; /* Texto atenuado */
+  transition: opacity 0.3s ease;
+}
+
+.nav a:hover {
+  opacity: 1;
+}
+
+.nav a.active {
+  color: white;
+  opacity: 1;
   font-weight: bold;
 }
 
@@ -42,14 +62,15 @@
   text-decoration: underline;
 }
 
-/* Nuevos estilos para los enlaces sociales */
 .social-links-container {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: right;
+  justify-content: flex-end;  
+  flex-wrap: wrap;
+  overflow: hidden;
+  padding-right: 2rem;
 }
 
-/* Nuevos estilos para los enlaces sociales */
 .social-links {
   list-style: none;
   display: flex;
@@ -58,26 +79,54 @@
 
 .social-links a {
   color: white;
-  font-size: 1.5rem; /* Tamaño más grande para los iconos */
+  font-size: 1.5rem;
   transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-  color: #0077b5; /* Ejemplo: azul de LinkedIn */
+  color: #0077b5;
 }
 
-
 .cv-link {
-  font-family: Arial, sans-serif; /* O usa la fuente que prefieras */
-  font-weight: bold; /* Haz que se vea más destacada */
-  font-size: 1.6rem !important;  /*Igual que los iconos */
-  display: flex; /* Alineación similar a los íconos */
-  align-items: center; /* Centrado vertical */
-  vertical-align: middle; /* Centrado vertical */
-  transform: translateY(-3px); /* Mueve el texto hacia arriba */
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.6rem !important;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  transform: translateY(-3px);
 }
 
 .cv-link:hover {
-  color: #0077b5; /* Ejemplo: azul profesional */
-  text-decoration: none !important; /* Quita el subrayado */
+  color: #0077b5;
+  text-decoration: none !important;
+}
+
+/* Solución para evitar que el contenido quede oculto detrás del header */
+body {
+  margin-top: 60px; /* Ajusta según la altura del header */
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header nav {
+    position: relative; /* Cambia el contexto en pantallas pequeñas */
+    left: auto;
+    transform: none;
+    gap: 1rem; /* Menor separación */
+  }
+
+  .header ul {
+    flex-direction: column;
+  }
+
+  .social-links-container {
+    justify-content: center;
+    margin-top: 1rem;
+  }
 }
