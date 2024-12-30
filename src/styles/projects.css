@@ -7,6 +7,21 @@
   text-align: center;
 }
 
+
+/* Add a bounce effect on page load */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
 .projects-container {   
   display: flex;
   flex-wrap: wrap;
@@ -50,35 +65,6 @@
 .project-card:hover .project-image {
   filter: blur(3px); /* Apply blur effect on hover */
 }
-
-.project-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 20%; /* Dedicate the bottom 15% to this section */
-  opacity:0.95;
-  background-color: black;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.project-info h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.project-info p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #ccc;
-}
-
 
 .project-overlay {
   position: absolute;
@@ -124,3 +110,105 @@
 .project-link:hover {
   background-color: #e68900;
 }
+.project-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%; /* Dedicate the bottom 15% to this section */
+  opacity:0.95;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.project-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.project-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #ccc;
+} 
+/* Contenedor de la tech stack */
+.tech-stack {
+  position: absolute;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end; /* Alinea los bullets a la derecha */
+  align-items: center; /* Centra verticalmente los bullets */
+  right: 10px; /* Añade un margen a la derecha si es necesario */
+}
+
+/* Estilo de cada bullet */
+.tech-bullet {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 0.5em 1.2em; /* Espaciado ajustado para texto */
+  margin: 0.3em;
+  border-radius: 30px; /* Redondea las esquinas del rectángulo */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease;
+  pointer-events: none;
+}
+
+/* Estilo del círculo dentro del bullet */
+.tech-bullet .circle {
+  width: 10px; /* Tamaño del círculo */
+  height: 10px;
+  border-radius: 50%; /* Hace el círculo completamente redondeado */
+  margin-right: 0.5em; /* Espacio entre el círculo y el texto */
+}
+
+
+
+/* Define different colors for each tech */
+.circle.python  { background-color: #306998; } /* Python */
+.circle.tensorflow { background-color: #FF6F00; } /* TensorFlow */
+.circle.js { background-color: #F0DB4F; } /* JavaScript */
+.circle.react { background-color: #61DBFB; } /* React */
+.circle.java { background-color: #007396; } /* Java */
+
+
+
+/* Aplica la animación solo cuando el proyecto es demo */
+.project-demo.demo {
+  position: absolute; /* Posiciona el texto dentro del contenedor */
+  top: 10; /* Asegura que el texto comience desde la parte superior */
+  left: 0; /* Alinea el texto a la izquierda */
+  animation: fallFromTop 0.5s ease-out forwards; /* Duración de 0.5s */
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ff9800; /* Color del texto */
+  display: inline-block; /* Permite que se ajusten los tamaños */
+  padding-left: 1rem; /* Ajusta la distancia desde el borde izquierdo */
+}
+
+/* Animación de caída desde arriba */
+@keyframes fallFromTop {
+  0% {
+    transform: translateY(-50px); /* Comienza 50px arriba de su posición */
+    opacity: 0; /* Comienza invisible */
+  }
+  100% {
+    transform: translateY(0); /* Llega a su posición original */
+    opacity: 1; /* Se vuelve visible */
+  }
+}
+
+/* Style for the demo marker */
+.project-card.demo {
+  border: 2px solid #ff9800; /* Orange border to indicate demo */
+}
+
