@@ -184,14 +184,16 @@
 
 /* Aplica la animación solo cuando el proyecto es demo */
 .project-demo.demo {
-  position: absolute; /* Posiciona el texto dentro del contenedor */
-  top: 10; /* Asegura que el texto comience desde la parte superior */
-  left: 0; /* Alinea el texto a la izquierda */
+  position: relative; /* Posiciona el texto dentro del contenedor */
+  top: 10px; /* Asegura que el texto comience desde la parte superior */
+  left: 0px; /* Alinea el texto a la izquierda */
   animation: fallFromTop 0.5s ease-out forwards; /* Duración de 0.5s */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-weight: bold;
   font-size: 1.1rem;
   color: #ff9800; /* Color del texto */
-  display: inline-block; /* Permite que se ajusten los tamaños */
   padding-left: 1rem; /* Ajusta la distancia desde el borde izquierdo */
 }
 
@@ -212,3 +214,11 @@
   border: 2px solid #ff9800; /* Orange border to indicate demo */
 }
 
+.project-demo.demo a {
+  text-decoration: none; /* Quitar subrayado del enlace */
+  color: inherit; /* Usar el color heredado (en este caso, el color del texto en el demo) */
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding-left: 1rem; /* Ajustar espaciado si es necesario */
+  cursor: pointer; /* Cambiar el cursor para que indique que es un enlace */
+}

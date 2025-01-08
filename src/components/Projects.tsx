@@ -21,7 +21,7 @@ const Projects: React.FC<{ limit?: number }> = ({ limit }) => {
           <div key={project.id} className={`project-card ${project.isDemo ? 'demo' : ''}`}>
             <img src={project.image} alt={project.title} className="project-image" />
             <div className="project-info">
-            {project.isDemo && (<div className="project-demo demo">Try the demo!!</div>)}
+            {project.isDemo && (<div className="project-demo demo"><a href={project.link} className="project-demo demo">Try the demo!!</a></div>)}
               <h3>{project.title}</h3>
               <div className="tech-stack">
                 {project.techStack.split(', ').map((tech, index) => (
