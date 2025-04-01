@@ -2,6 +2,7 @@ import React , { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaTimes} from 'react-icons/fa'; // Iconos de React Icons
 import '../styles/header.css';
+import { getAssetPath } from '../config';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
             </a>
           </li>
           <li>
-            <a href="/CV.pdf" target="_blank" rel="noopener noreferrer" className="cv-link">
+            <a href={getAssetPath('CV.pdf')} target="_blank" rel="noopener noreferrer" className="cv-link">
               CV
             </a>
           </li>

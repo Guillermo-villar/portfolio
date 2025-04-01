@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/experience.css';
+import { getAssetPath } from '../config';
 
 interface ExperienceProps {
   logo: string;
@@ -9,9 +10,23 @@ interface ExperienceProps {
 }
 
 const Experience: React.FC<ExperienceProps> = ({ logo, company, startDate, description }) => {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <div className="experience-card">
-      <img src={logo} alt={`${company} logo`} className="experience-logo" />
+      <img 
+        src={getAssetPath(logo)} 
+        alt={`${company} logo`} 
+        className="experience-logo"
+        onError={(e) => {
+          if (!imgError) {
+            console.log(`Failed to load experience logo: ${logo}`);
+            // Try fallback direct path
+            e.currentTarget.src = `${process.env.PUBLIC_URL}/${logo}`;
+            setImgError(true);
+          }
+        }}
+      />
       <div className="experience-details">
         <h3>{company}</h3>
         <p>{startDate}</p>
@@ -28,7 +43,7 @@ const Experience: React.FC<ExperienceProps> = ({ logo, company, startDate, descr
 const ExperienceList: React.FC = () => {
   const experiences = [
     {
-      logo: '/OpenAI.png',  // Changed to AI.png which exists in your public folder
+      logo: 'OpenAI.png',
       company: 'AI Freelance Annotator',
       startDate: 'September 2024 - Present',
       description: [
@@ -37,7 +52,7 @@ const ExperienceList: React.FC = () => {
       ],
     },
     {
-      logo: '/sfsu.jpg',
+      logo: 'sfsu.jpg',
       company: 'Computer Egineering Assistant',
       startDate: 'January 2024 - June 2024',
       description: [

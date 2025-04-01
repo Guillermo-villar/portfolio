@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import '../styles/blogs.css';
+import { getAssetPath } from '../config';
 
 interface BlogPostProps {
   id: number;
@@ -19,7 +20,7 @@ const BlogPostTemplate: React.FC<BlogPostProps> = ({ id, title, image, content, 
         <h1 className="blog-post-title">{title}</h1>
         <p className="blog-post-date">{date}</p>
         <div className="blog-post-image-container">
-          <img src={image} alt={title} className="blog-post-image" />
+          <img src={getAssetPath(image)} alt={title} className="blog-post-image" />
         </div>
         <div className="blog-post-content">
           <p>{content}</p>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/blogs.css';
+import { getAssetPath } from '../config';
 
 interface BlogPost {
   id: number;
@@ -17,7 +18,7 @@ const blogPosts: BlogPost[] = [
   {
     id: 1,
     title: "Cibervolunteer?",
-    image: "/ciberv.png",
+    image: "ciberv.png",
     content: "Contenido del primer blog...", 
     date: "2024-09-31",
     path: "/blog/1"
@@ -25,15 +26,15 @@ const blogPosts: BlogPost[] = [
   {
     id: 2,
     title: "Portfolio Website going Live",
-    image: "/web.png",
+    image: "web.png",
     content: "Contenido del segundo blog...",
     date: "2025-04-01",
     path: "/blog/2"
   },
   {
-    id: 2,
+    id: 3,
     title: "Segundo Blog",
-    image: "/path/to/image2.jpg",
+    image: "path/to/image2.jpg",
     content: "Contenido del segundo blog...",
     date: "2021-09-02",
     path: "/blog/2"
@@ -53,7 +54,7 @@ const BlogPage: React.FC = () => {
                 <h2>{post.title}</h2>
                 <p>{post.content.substring(0, 150)}...</p>
               </div>
-              <img src={post.image} alt={post.title} className="blog-image" />
+              <img src={getAssetPath(post.image)} alt={post.title} className="blog-image" />
             </div>
           </Link>
         ))}
