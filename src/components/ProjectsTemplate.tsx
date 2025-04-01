@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import '../styles/projecttemplate.css';
+import { getAssetPath } from '../config';
 
 interface ProjectData {
   title: string;
@@ -19,7 +20,7 @@ const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, git
       <div className="project-content">
         <h1>{title}</h1>
         <div className="image-container">
-          <img src={image} alt={title} className="project-image" />
+          <img src={getAssetPath(image)} alt={title} className="project-image" />
         </div>
         <p className="project-description">{description}</p>
         <div className="project-details">
