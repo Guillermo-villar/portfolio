@@ -52,14 +52,6 @@ const Home: React.FC = () => {
               ))}
             </div>
           </div>
-          
-          <div className="rounded-container quote-container">
-            <h2>Philosophy</h2>
-            <blockquote>
-              "The art of programming is the skill of controlling complexity. The great program is subdued—made simple in its complexity."
-            </blockquote>
-            <p className="quote-author">— Marijn Haverbeke</p>
-          </div>
         </div>
         
         <div className="right-column">
@@ -72,7 +64,7 @@ const Home: React.FC = () => {
             </div>
           </div>
           <div className="rounded-container">
-            <Projects limit={4}/>
+            <Projects limit={4} showDemo={false} isHomePage={true} />
           </div>
         </div>
       </div>

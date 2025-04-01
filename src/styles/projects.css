@@ -141,6 +141,7 @@
   background-color: #e68900;
 }
 
+/* Project info container - base styling */
 .project-info {
   position: absolute;
   bottom: 0;
@@ -158,6 +159,24 @@
   z-index: 1;
 }
 
+/* Home page project info styles - simplified layout */
+.project-info.home-page-info {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  padding: 0 10px;
+  align-items: center;
+}
+
+/* Left aligned title for home page */
+.left-aligned-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: left;
+  align-self: center;
+  justify-self: start;
+}
+
 .project-info h3 {
   margin: 0;
   font-size: 1rem;
@@ -170,7 +189,7 @@
   color: #ccc;
 } 
 
-/* Contenedor de la tech stack */
+/* Tech stack container */
 .tech-stack {
   position: absolute;
   display: flex;
@@ -178,6 +197,19 @@
   justify-content: flex-end;
   align-items: center;
   right: 10px;
+}
+
+/* Tech stack in home page - grid positioning instead of absolute */
+.project-info.home-page-info .tech-stack {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  justify-content: flex-end;
+  grid-column: 2;
+  align-items: center;
+  height: 100%;
+  padding-right: 15px; /* Added right padding to ensure tech stack has enough space */
 }
 
 /* Estilo de cada bullet */
@@ -196,6 +228,24 @@
   pointer-events: none;
 }
 
+/* Make tech-bullets in homepage more compact but still clearly visible */
+.project-info.home-page-info .tech-bullet {
+  padding: 0.25em 0.7em;
+  margin: 0.1em;
+  font-size: 0.8em;
+  border-width: 1.5px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Make circle indicator slightly larger on home page */
+.project-info.home-page-info .tech-bullet .circle {
+  width: 8px;
+  height: 8px;
+  margin-right: 0.4em;
+}
+
 /* Estilo del círculo dentro del bullet */
 .tech-bullet .circle {
   width: 10px;
@@ -207,10 +257,15 @@
 /* Define different colors for each tech */
 .circle.python  { background-color: #306998; }
 .circle.tensorflow { background-color: #FF6F00; }
-.circle.js { background-color: #F0DB4F; }
+.circle.web { background-color: #e4e4e4; }
+.circle.javascript { background-color: #F0DB4F; }
 .circle.react { background-color: #61DBFB; }
 .circle.java { background-color: #007396; }
 .circle.cryptography { background-color: #e625ec; }
+.circle.web3 { background-color: #128b07; }
+.circle.blockchain { background-color: #f8d700; }
+.circle.machine-learning { background-color: #ff9800; }
+.circle.statistics { background-color: #ff9800; }
 
 /* Aplica la animación solo cuando el proyecto es demo */
 .project-demo.demo {
@@ -233,9 +288,9 @@
   z-index: 2;
 }
 
-/* Style for the demo marker */
+/* Style for the demo marker - removed the border */
 .project-card.demo {
-  border: 2px solid #ff9800;
+  /* Border removed */
 }
 
 .project-demo.demo a {
