@@ -20,7 +20,7 @@ const Header: React.FC = () => {
           <li><NavLink to="/projects" className={({ isActive }) => isActive ? "active" : ""}>
               Projects
             </NavLink></li>
-          <li><NavLink to="/home" className={({ isActive }) => isActive ? "active" : ""}>
+          <li><NavLink to="/blogs" className={({ isActive }) => isActive ? "active" : ""}>
               Blog
             </NavLink></li>
           <li><NavLink to="/home" className={({ isActive }) => isActive ? "active" : ""}>
