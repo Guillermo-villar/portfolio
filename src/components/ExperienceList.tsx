@@ -28,21 +28,20 @@ const Experience: React.FC<ExperienceProps> = ({ logo, company, startDate, descr
 const ExperienceList: React.FC = () => {
   const experiences = [
     {
-      logo: '/path/to/logo1.png',
-      company: 'Company One',
-      startDate: 'January 2020 - Present',
+      logo: '/OpenAI.png',  // Changed to AI.png which exists in your public folder
+      company: 'AI Freelance Annotator',
+      startDate: 'September 2024 - Present',
       description: [
-        'Developed new features for the company website',
-        'Collaborated with the design team to improve UI/UX',
-        'Implemented responsive design',
+        'Worked for multiple companies on OpenAI and Google models',
+        'Applied code expertise to improve accuracy on over 90% of models worked with',
       ],
     },
     {
-      logo: '/path/to/logo2.png',
-      company: 'Company Two',
-      startDate: 'June 2018 - December 2019',
+      logo: '/sfsu.jpg',
+      company: 'Computer Egineering Assistant',
+      startDate: 'January 2024 - June 2024',
       description: [
-        'Led a team of 5 developers',
+        'Design coursework and projects for students',
         'Managed project timelines and deliverables',
         'Conducted code reviews and provided feedback',
       ],

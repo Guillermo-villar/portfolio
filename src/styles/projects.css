@@ -1,11 +1,21 @@
 /* Container for the projects */
 .projects-section {
-  padding: 2rem;
-  background-color: rgba(48, 48, 48, 0.897);
-  padding-top: 0.5rem !important;
+  padding: 0;
   color: #fff;
   text-align: center;
-  border: 2px solid red; /* Temporary border for debugging */
+}
+
+/* When projects are on their own page, add padding */
+.home > .projects-section {
+  padding: 2rem;
+  background-color: rgba(48, 48, 48, 0.897);
+}
+
+.projects-section h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #ff9800;
 }
 
 /* Add a bounce effect on page load */
@@ -42,18 +52,23 @@
 .projects-container {   
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: center;
 }
 
 .project-card {
-  flex: 0 0 calc(50% - 2rem); /* Dos tarjetas por fila, con un margen de 2rem */
-  height: 300px; /* Puedes ajustar esta altura */
+  flex: 0 0 calc(50% - 1rem);
+  height: 250px;
   border-radius: 10px;
   overflow: hidden;
   background-color: #333;
-  will-change: transform; /* Optimiza animaciones */
+  will-change: transform;
   transition: transform 0.3s ease-in-out;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
 }
 
 .project-image {
@@ -72,13 +87,13 @@
   left: 0;
   width: 100%;
   height: 80%;
-  pointer-events: none; /* No bloquea interacción */
+  pointer-events: none;
   z-index: 1;
   background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.9) 100%);
 }
 
 .project-card:hover .project-image {
-  filter: blur(3px); /* Apply blur effect on hover */
+  filter: blur(3px);
 }
 
 .project-overlay {
@@ -91,13 +106,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+  background: rgba(0, 0, 0, 0.7);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
 .project-card:hover .project-overlay {
-  opacity: 1; /* Show overlay on hover */
+  opacity: 1;
 }
 
 .project-overlay h3 {
@@ -131,8 +146,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 20%; /* Dedicate the bottom 15% to this section */
-  opacity:0.95;
+  height: 20%;
+  opacity: 0.95;
   background-color: black;
   color: white;
   display: flex;
@@ -160,9 +175,9 @@
   position: absolute;
   display: flex;
   gap: 0.5rem;
-  justify-content: flex-end; /* Alinea los bullets a la derecha */
-  align-items: center; /* Centra verticalmente los bullets */
-  right: 10px; /* Añade un margen a la derecha si es necesario */
+  justify-content: flex-end;
+  align-items: center;
+  right: 10px;
 }
 
 /* Estilo de cada bullet */
@@ -173,9 +188,9 @@
   color: white;
   font-size: 0.8em;
   font-weight: 600;
-  padding: 0.5em 1.2em; /* Espaciado ajustado para texto */
+  padding: 0.5em 1.2em;
   margin: 0.3em;
-  border-radius: 30px; /* Redondea las esquinas del rectángulo */
+  border-radius: 30px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   transition: background-color 0.3s ease;
   pointer-events: none;
@@ -183,27 +198,27 @@
 
 /* Estilo del círculo dentro del bullet */
 .tech-bullet .circle {
-  width: 10px; /* Tamaño del círculo */
+  width: 10px;
   height: 10px;
-  border-radius: 50%; /* Hace el círculo completamente redondeado */
-  margin-right: 0.5em; /* Espacio entre el círculo y el texto */
+  border-radius: 50%;
+  margin-right: 0.5em;
 }
 
 /* Define different colors for each tech */
-.circle.python  { background-color: #306998; } /* Python */
-.circle.tensorflow { background-color: #FF6F00; } /* TensorFlow */
-.circle.js { background-color: #F0DB4F; } /* JavaScript */
-.circle.react { background-color: #61DBFB; } /* React */
-.circle.java { background-color: #007396; } /* Java */
-.circle.cryptography { background-color: #e625ec; } /* Cryptography */
+.circle.python  { background-color: #306998; }
+.circle.tensorflow { background-color: #FF6F00; }
+.circle.js { background-color: #F0DB4F; }
+.circle.react { background-color: #61DBFB; }
+.circle.java { background-color: #007396; }
+.circle.cryptography { background-color: #e625ec; }
 
 /* Aplica la animación solo cuando el proyecto es demo */
 .project-demo.demo {
-  position: absolute; /* Posiciona el texto dentro del contenedor */
-  top: 10px; /* Asegura que el texto comience desde la parte superior */
-  left: 10px; /* Alinea el texto a la izquierda */
+  position: absolute;
+  top: 10px;
+  left: 10px;
   animation: attentionRotate 3s ease-in-out infinite;
-  animation-duration: 6s; /* Duración total de la animación */
+  animation-duration: 6s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
@@ -212,31 +227,40 @@
   align-items: center;
   font-weight: bold;
   font-size: 1.1rem;
-  color: #ff9800; /* Color del texto */
-  padding-left: 1rem; /* Ajusta la distancia desde el borde izquierdo */
-  white-space: nowrap; /* Evita que el texto se desborde */
+  color: #ff9800;
+  padding-left: 1rem;
+  white-space: nowrap;
   z-index: 2;
 }
 
 /* Style for the demo marker */
 .project-card.demo {
-  border: 2px solid #ff9800; /* Orange border to indicate demo */
+  border: 2px solid #ff9800;
 }
 
 .project-demo.demo a {
-  text-decoration: none; /* Quitar subrayado del enlace */
-  color: inherit; /* Usar el color heredado (en este caso, el color del texto en el demo) */
+  text-decoration: none;
+  color: inherit;
   font-weight: bold;
   font-size: 1.1rem;
-  padding-left: 1rem; /* Ajustar espaciado si es necesario */
-  cursor: pointer; /* Cambiar el cursor para que indique que es un enlace */
+  padding-left: 1rem;
+  cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .project-card {
+    flex: 0 0 100%;
+  }
+  
+  .home > .projects-section {
+    padding: 1rem;
+  }
+}
+
+/* Keep for Experience section compatibility */
 .experience-section {
   padding: 2rem;
-  background-color: rgba(48, 48, 48, 0.897);
   padding-top: 0.5rem !important;
   color: #fff;
   text-align: center;
-  border: 2px solid blue; /* Temporary border for debugging */
 }
