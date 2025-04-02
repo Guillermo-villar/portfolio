@@ -50,6 +50,7 @@
   object-fit: contain; /* Ajusta la imagen para que se vea completa */
   border-radius: 10px;
   margin-left: 1rem;
+  max-width: 100%; /* Ensure images don't overflow container */
 }
 
 .blog-content {
@@ -107,6 +108,8 @@
 
 .blog-post-image {
   max-width: 100%;
+  max-height: 400px; /* Limit height of blog post images */
+  object-fit: contain; /* Maintain aspect ratio */
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
 }
@@ -114,6 +117,85 @@
 .blog-post-content {
   font-size: 1.1rem;
   line-height: 1.6;
+}
+
+/* Enhanced blog post content styling */
+.blog-post-content h2 {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.5rem;
+}
+
+.blog-post-content p {
+  margin-bottom: 1.2rem;
+  color: #e0e0e0;
+}
+
+.blog-post-content ul, 
+.blog-post-content ol {
+  margin: 1rem 0 1.5rem 2rem;
+  color: #e0e0e0;
+}
+
+.blog-post-content li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-post-content ul.blog-list,
+.blog-post-content ol.blog-list {
+  background-color: #333;
+  padding: 1rem 1rem 1rem 2.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #555;
+}
+
+.blog-post-content strong {
+  color: #fff;
+  font-weight: bold;
+}
+
+.blog-post-content br {
+  margin-bottom: 0.8rem;
+  content: "";
+  display: block;
+}
+
+/* Responsive styles for blog posts */
+@media (max-width: 768px) {
+  .blog-post-container {
+    padding: 1.5rem;
+  }
+  
+  .blog-post-title {
+    font-size: 1.8rem;
+  }
+  
+  .blog-post-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .blog-post-content {
+    font-size: 1rem;
+  }
+  
+  .blog-card {
+    flex-direction: column;
+  }
+  
+  .blog-image {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    margin-top: 1rem;
+    order: -1;
+  }
+  
+  .blog-content {
+    width: 100%;
+  }
 }
 
 .read-more-link {

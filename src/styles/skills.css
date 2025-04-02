@@ -85,7 +85,7 @@
 
 /* Circle colors for different skills - using the same colors as your projects */
 .circle.python { background-color: #306998; }
-.circle.javascript { background-color: #F0DB4F; }
+.circle.jscript { background-color: #F0DB4F; }
 .circle.typescript { background-color: #3178C6; }
 .circle.java { background-color: #007396; }
 .circle.react { background-color: #61DBFB; }
@@ -96,6 +96,10 @@
 .circle.aws { background-color: #FF9900; }
 .circle.cryptography { background-color: #e625ec; }
 .circle.machine.learning { background-color: #01A9DB; }
+.circle.c { background-color: #bd1e1e; }
+.circle.langchain { background-color: #12ce2b; }
+.circle.sckit { background-color: #f7c02d; }
+.circle.pytorch { background-color: #0e2cb6; }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

@@ -13,7 +13,7 @@ const Projects: React.FC<{ limit?: number, showDemo?: boolean, isHomePage?: bool
     { id: 1, title: 'AI Digit Detector', description: 'Demo on Machine Learning using Pyton & Tensorflow', image: 'AI.png', link: '/projects/ai-demo', techStack: 'Python, Tensorflow', isDemo : true},
     { id: 2, title: 'Crypto Safe Fileshare', description: 'Cryptographically robust Filesharing system, with custom Certificate system', image: 'outp.webp', link: '/projects/crypto', techStack: 'Python, Cryptography' , isDemo : false},
     { id: 3, title: 'NGO Crypto funding', description: 'A Web3 solution to NGO´s lack of accountability', image: 'G3.png', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7310295376819806208/', techStack: 'Web3, Blockchain', isDemo : false},
-    { id: 4, title: 'Web Portfolio', description: 'This very Website!!', image: 'web.png', link: 'https://example.com/project4' , techStack: 'Web, React, Javascript', isDemo : false},
+    { id: 4, title: 'Web Portfolio', description: 'This very Website!!', image: 'web.png', link: '/blog/2', techStack: 'Web, React, Javascript', isDemo : false},
     { id: 5, title: 'Bachelor Thesis', description: 'Unbalanced dataset machine learning', image: 'TFG.jpeg', link: 'https://www.sciencedirect.com/topics/computer-science/imbalance-ratio' ,techStack: 'Machine-Learning, Statistics' , isDemo : false},
     { id: 6, title: 'Coming soon...', description: 'Stay updated for new projects!! Click the link for something random', image: 'comin.png', link: 'https://en.wikipedia.org/wiki/Special:Random' , techStack: '???, !!!', isDemo : false},
   ];

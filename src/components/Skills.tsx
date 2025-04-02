@@ -11,15 +11,16 @@ const Skills: React.FC = () => {
   const skills: SkillProps[] = [
     // Programming Languages
     { name: 'Python', level: 5, category: 'language' },
-    { name: 'JavaScript', level: 4, category: 'language' },
-    { name: 'TypeScript', level: 4, category: 'language' },
-    { name: 'Java', level: 3, category: 'language' },
+    { name: 'C', level: 4, category: 'language' },
+    { name: 'JScript', level: 4, category: 'language' },
+    { name: 'React', level: 3, category: 'language' },
     
     // Frameworks
-    { name: 'React', level: 4, category: 'framework' },
+    { name: 'Git', level: 4, category: 'framework' },
     { name: 'TensorFlow', level: 3, category: 'framework' },
-    { name: 'Node.js', level: 3, category: 'framework' },
-    { name: 'Cryptography', level: 4, category: 'framework' }, // Moved cryptography here
+    { name: 'Sckit', level: 3, category: 'framework' },
+    { name: 'Langchain', level: 4, category: 'framework' }, 
+    { name: 'Pytorch', level: 4, category: 'framework' }, 
   ];
 
   // Group skills by category
