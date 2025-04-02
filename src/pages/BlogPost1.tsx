@@ -4,10 +4,18 @@ import BlogPostTemplate from '../components/BlogPostTemplate';
 const BlogPost1: React.FC = () => {
   const blogData = {
     id: 1,
-    title: "Volunteer in Fundación Cibervoluntarios",
+    title: "My Journey as a Cibervolunteer",
     image: "ciberv.png",
-    content: "As a volunteer with Fundación Cibervoluntarios, I've had the opportunity to help bridge the digital divide by empowering individuals at risk of social and digital exclusion. The foundation's mission is to promote the use and knowledge of new technologies as a means to address social gaps, foster social innovation, and encourage citizen empowerment. ​\nThrough workshops and training sessions, I've assisted in teaching essential digital skills, such as safe internet navigation and cyberbullying prevention, tailoring content to meet the specific needs of diverse groups. This experience has reshaped my perspective on technology, highlighting its potential as a tool for inclusion and active societal participation. I've come to understand that access to and proficiency in technology are crucial for ensuring equal opportunities and strengthening social cohesion within our community.",
-    date: "2021-09-01"
+    content: `As a volunteer with Fundación Cibervoluntarios, I've helped bridge the digital divide by empowering individuals at risk of social and digital exclusion. The foundation promotes the use of new technologies to address social gaps and foster citizen empowerment.
+
+Through workshops and training sessions, I've taught essential digital skills like safe internet navigation and cyberbullying prevention. This experience has reshaped my perspective on technology as a tool for inclusion.
+
+Working with seniors previously intimidated by smartphones or helping young students understand online safety has been incredibly rewarding. One memorable project involved creating simplified guides for elderly participants to connect with family through video calls.
+
+The digital divide isn't just about access to devices—it's about having the knowledge to use them effectively. As our world becomes increasingly digital, initiatives like Cibervoluntarios ensure no one is left behind.
+
+If you're interested in volunteering, consider exploring opportunities with digital inclusion organizations. Your skills could make a significant difference in someone's life.`,
+    date: "March 15, 2024"
   };
 
   return (

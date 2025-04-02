@@ -8,6 +8,8 @@ import Crypto from './pages/CryptoProject';
 import Blogs from './pages/Blogs';
 import BlogPost1 from './pages/BlogPost1';
 import BlogPost2 from './pages/BlogPost2';
+import BlogPost3 from './pages/BlogPost3';
+import About from './pages/About';
 
 function App() {
   // Use basename with HashRouter to ensure all routes work correctly
@@ -21,6 +23,8 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/1" element={<BlogPost1 />} />
         <Route path="/blog/2" element={<BlogPost2 />} />
+        <Route path="/blog/3" element={<BlogPost3 />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );

@@ -1,36 +1,57 @@
 .header {
   display: flex;
-  justify-content: space-between; /* Espacia h1 y social links */
-  align-items: center; /* Centra verticalmente */
+  justify-content: space-between; /* Espacia los elementos horizontalmente en desktop */
+  align-items: center;
   background-color: #333;
   color: white;
   padding: 1rem;
   min-height: 40px;
-  position: fixed; /* Fija el header */
+  position: fixed;
   top: 0;
-  width: 100%; /* Abarca todo el ancho */
-  z-index: 1000; /* Encima de otros elementos */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.header nav {
-  left: 10%; /* Centrado horizontal */
-  transform: translateX(-25%); /* Ajuste perfecto para el centrado */
-  display: flex;
-  gap:1rem !important; /* Espaciado entre los elementos del nav */
+.header-content {
+  display: none; /* Oculto por defecto, visible solo en móviles */
 }
 
 .header h1 {
   font-size: 1.5rem;
   margin: 0;
-  white-space: nowrap; /* Evita que el texto se corte */
+  white-space: nowrap;
+  flex: 1; /* Ocupa una parte proporcional del espacio */
+}
+
+.header a {
+  color: white;
+  text-decoration: none;
+}
+
+.header a:hover {
+  text-decoration: underline;
 }
 
 .header ul {
   list-style: none;
   display: flex;
-  margin:0;
-  padding-right: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para navegación en pantallas grandes */
+.nav {
+  position: absolute; /* Posicionamiento absoluto para centrar independientemente */
+  left: 50%; /* Coloca en el centro horizontal */
+  transform: translateX(-50%); /* Ajusta el centro exacto */
+  display: flex;
+  gap: 1rem;
+}
+
+.nav ul {
+  display: flex;
+  gap: 1rem;
 }
 
 .nav li {
@@ -39,7 +60,7 @@
 }
 
 .nav a {
-  opacity: 0.6; /* Texto atenuado */
+  opacity: 0.6;
   transition: opacity 0.3s ease;
 }
 
@@ -53,22 +74,14 @@
   font-weight: bold;
 }
 
-.header a {
-  color: white;
-  text-decoration: none;
-}
-
-.header a:hover {
-  text-decoration: underline;
-}
-
+/* Estilos para los enlaces sociales */
 .social-links-container {
   display: flex;
-  align-items: right;
-  justify-content: flex-end;  
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
   overflow: hidden;
   padding-right: 2rem;
+  flex: 1; /* Ocupa una parte proporcional del espacio */
 }
 
 .social-links {
@@ -102,31 +115,175 @@
   text-decoration: none !important;
 }
 
-/* Solución para evitar que el contenido quede oculto detrás del header */
-body {
-  margin-top: 60px; /* Ajusta según la altura del header */
+/* Estilos para móviles - se aplican solo en pantallas pequeñas */
+.menu-toggle {
+  display: none; /* Oculto por defecto, visible solo en móviles */
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
 }
 
-/* Media queries para dispositivos móviles */
+.overlay {
+  display: none; /* Oculto por defecto, visible solo en móviles cuando el menú está abierto */
+}
+
+/* Estilos específicos para móviles */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
+    padding: 0.5rem 1rem;
+    align-items: stretch;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    padding: 0.5rem 0;
+    position: relative; /* Añadir posición relativa */
   }
-
-  .header nav {
-    position: relative; /* Cambia el contexto en pantallas pequeñas */
-    left: auto;
+  
+  .menu-toggle {
+    display: block;
+    position: absolute; /* Posicionamiento absoluto para colocarlo a la derecha */
+    right: 0; /* Alineado a la derecha */
+    top: 50%; /* Centrado verticalmente */
+    transform: translateY(-50%); /* Ajuste preciso del centrado vertical */
+    margin-right: 20px; /* Aumentado el margen derecho para alejarlo más del borde */
+    z-index: 1001; /* Asegurar que esté por encima de otros elementos */
+  }
+  
+  .nav {
+    position: static; /* Remueve el posicionamiento absoluto en móviles */
     transform: none;
-    gap: 1rem; /* Menor separación */
+    left: auto;
+    width: 100%;
   }
-
-  .header ul {
+  
+  .nav-container {
     flex-direction: column;
+    align-items: flex-start;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    width: 100%;
+    z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
   }
-
-  .social-links-container {
-    justify-content: center;
+  
+  .nav-container.active {
+    height: auto;
+    opacity: 1;
     margin-top: 1rem;
+    z-index: 1000; /* Aumentar z-index cuando está activo */
   }
+  
+  .header nav {
+    width: 100%;
+    z-index: 1001; /* Mayor z-index para asegurar que esté por encima */
+  }
+  
+  .nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    z-index: 1002; /* Mayor z-index */
+  }
+  
+  .nav li {
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    text-align: center;
+    position: relative; /* Establecer como contenedor posicionado */
+    z-index: 1003; /* Mayor z-index */
+  }
+  
+  /* Hacer que los enlaces sean más fáciles de clicar en móvil */
+  .nav a {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 0;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    position: relative; /* Establecer como contenedor posicionado */
+    z-index: 1004; /* Mayor z-index */
+    cursor: pointer; /* Añadir cursor pointer para indicar que es clickeable */
+  }
+  
+  .nav a:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav a.active {
+    color: white;
+    opacity: 1;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  .social-links-container {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 0;
+    margin-top: 0.5rem;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Asegurarse de que esté por debajo del menú */
+    display: block;
+  }
+  
+  /* Ajuste del margen superior para el contenido en móviles */
+  body {
+    margin-top: 70px;
+  }
+  
+  /* Estilos para los nuevos botones de navegación */
+  .nav-button {
+    background: none;
+    border: none;
+    color: white;
+    width: 100%;
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    font-weight: bold;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    z-index: 1005; /* Mayor z-index para asegurar clickabilidad */
+    position: relative;
+  }
+  
+  .nav-button:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: underline;
+  }
+  
+  .nav-button:active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Aumentar el área clickeable */
+  .nav li {
+    position: relative;
+    z-index: 1003;
+  }
+}
+
+/* Solución para evitar que el contenido quede oculto detrás del header */
+body {
+  margin-top: 60px;
 }
