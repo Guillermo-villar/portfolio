@@ -43,7 +43,7 @@ const Experience: React.FC<ExperienceProps> = ({ logo, company, startDate, descr
 const ExperienceList: React.FC = () => {
   const experiences = [
     {
-      logo: 'OpenAI.png',
+      logo: 'OpenAI.webp',
       company: 'AI Freelance Annotator',
       startDate: 'September 2024 - Present',
       description: [

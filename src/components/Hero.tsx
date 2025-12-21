@@ -8,15 +8,14 @@ const Hero: React.FC = () => {
   return (
     <div className="hero">
       <img 
-        src={getAssetPath('icon.png')} 
+        src={getAssetPath('icon.webp')} 
         alt="Profile" 
-        className="hero-image" 
+        className="hero-image"
         onError={(e) => {
           if (!imageError) {
-            // Try an alternative path format on error
-            e.currentTarget.src = `${process.env.PUBLIC_URL}/icon.png`;
+            console.log('Failed to load profile image: icon.webp');
+            e.currentTarget.src = `${process.env.PUBLIC_URL}/icon.webp`;
             setImageError(true);
-            console.log('Attempting alternative image path format');
           }
         }}
       />

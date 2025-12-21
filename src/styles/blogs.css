@@ -3,7 +3,9 @@
   background-color: #222;
   color: #fff;
   min-height: 100vh;
-  padding-top: 60px; /* Ajusta según la altura del header */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .blog-container {
@@ -12,6 +14,8 @@
   align-items: center;
   gap: 2rem;
   padding: 2rem;
+  margin-top: 60px; /* Moved the spacing to margin-top of the content container */
+  flex-grow: 1;
 }
 
 /* Blog card link styles */

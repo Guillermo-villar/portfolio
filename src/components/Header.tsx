@@ -55,7 +55,12 @@ const Header: React.FC = () => {
         // Versión móvil con menú hamburguesa
         <>
           <div className="header-content">
-            <h1>Guillermo Villar Sánchez</h1>
+            <h1 className="header-name">
+              <span className="name-full">Guillermo Villar Sánchez</span>
+              <span className="name-medium">Guillermo Villar</span>
+              <span className="name-small">Guillermo</span>
+              <span className="name-initials">GVS</span>
+            </h1>
             
             <button 
               className="menu-toggle" 
@@ -136,7 +141,12 @@ const Header: React.FC = () => {
       ) : (
         // Versión desktop original
         <>
-          <h1>Guillermo Villar Sánchez</h1>
+          <h1 className="header-name">
+            <span className="name-full">Guillermo Villar Sánchez</span>
+            <span className="name-medium">Guillermo Villar</span>
+            <span className="name-small">Guillermo</span>
+            <span className="name-initials">GVS</span>
+          </h1>
           <nav className="nav">
             <ul>
               <li>

@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>&copy; 2023 Guillermo Villar Sánchez. All rights reserved.</p>
+        <p>&copy; 2025 Guillermo Villar Sánchez. All rights reserved.</p>
         <div className="footer-links">
           <a href="https://github.com/Guillermo-villar" target="_blank" rel="noopener noreferrer">
             <FaGithub />

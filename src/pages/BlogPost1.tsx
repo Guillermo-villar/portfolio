@@ -5,7 +5,7 @@ const BlogPost1: React.FC = () => {
   const blogData = {
     id: 1,
     title: "My Journey as a Cibervolunteer",
-    image: "ciberv.png",
+    image: "ciberv.webp",
     content: `As a volunteer with Fundación Cibervoluntarios, I've helped bridge the digital divide by empowering individuals at risk of social and digital exclusion. The foundation promotes the use of new technologies to address social gaps and foster citizen empowerment.
 
 Through workshops and training sessions, I've taught essential digital skills like safe internet navigation and cyberbullying prevention. This experience has reshaped my perspective on technology as a tool for inclusion.

@@ -5,7 +5,7 @@ const BlogPost3: React.FC = () => {
   const blogData = {
     id: 3,
     title: "Exploring Modern Web Development Frameworks",
-    image: "AI.png",
+    image: "AI.webp",
     content: `Choosing the right framework is crucial in today's evolving web development landscape. Here's a brief comparison of popular frameworks.
 
 ## React: The Flexible Library

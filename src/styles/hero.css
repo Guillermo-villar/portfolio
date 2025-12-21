@@ -30,6 +30,47 @@
   font-size: 1.8rem;
 }
 
+.hero-name span {
+  display: none !important;
+}
+
+/* Large screens: Full Name */
+@media (min-width: 900px) {
+  .hero-name .name-full {
+    display: inline !important;
+  }
+}
+
+/* Medium screens: Guillermo Villar */
+@media (min-width: 600px) and (max-width: 899px) {
+  .hero h1 {
+    font-size: 2.2rem !important;
+  }
+  .hero-name .name-medium {
+    display: inline !important;
+  }
+}
+
+/* Small screens: Guillermo */
+@media (min-width: 400px) and (max-width: 599px) {
+  .hero h1 {
+    font-size: 1.8rem !important;
+  }
+  .hero-name .name-small {
+    display: inline !important;
+  }
+}
+
+/* Very small screens: GVS */
+@media (max-width: 399px) {
+  .hero h1 {
+    font-size: 1.5rem !important;
+  }
+  .hero-name .name-initials {
+    display: inline !important;
+  }
+}
+
 .hero p {
   margin: 0.5rem 0;
   font-size: 1rem;
