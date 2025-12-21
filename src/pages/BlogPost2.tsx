@@ -5,7 +5,7 @@ const BlogPost2: React.FC = () => {
   const blogData = {
     id: 2,
     title: "My Web Development Journey: From Zero to Portfolio",
-    image: "web.png",
+    image: "web.webp",
     content: `Building this portfolio website represents my journey of learning web development from scratch. What began as a curiosity turned into a full-fledged project with many challenges and learning opportunities along the way.
 
 ## Starting from Zero

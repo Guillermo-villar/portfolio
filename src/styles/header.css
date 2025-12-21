@@ -24,6 +24,54 @@
   flex: 1; /* Ocupa una parte proporcional del espacio */
 }
 
+.header-name span {
+  display: none;
+}
+
+/* Large screens: Full Name */
+@media (min-width: 1100px) {
+  .header-name .name-full {
+    display: inline;
+  }
+}
+
+/* Medium screens: Guillermo Villar */
+@media (min-width: 850px) and (max-width: 1099px) {
+  .header-name .name-medium {
+    display: inline;
+  }
+}
+
+/* Small screens: Guillermo */
+@media (min-width: 769px) and (max-width: 849px) {
+  .header-name .name-small {
+    display: inline;
+  }
+}
+
+/* Mobile and Tablet: GVS or Guillermo depending on space */
+@media (max-width: 768px) {
+  .header-name .name-full {
+    display: none;
+  }
+  .header-name .name-medium {
+    display: none;
+  }
+  /* On mobile header, we might want Guillermo or GVS */
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .header-name .name-small {
+    display: inline;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-name .name-initials {
+    display: inline;
+  }
+}
+
 .header a {
   color: white;
   text-decoration: none;
