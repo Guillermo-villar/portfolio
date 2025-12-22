@@ -10,11 +10,13 @@ import BlogPost1 from './pages/BlogPost1';
 import BlogPost2 from './pages/BlogPost2';
 import BlogPost3 from './pages/BlogPost3';
 import About from './pages/About';
+import VisitorTracker from './components/VisitorTracker';
 
 function App() {
   // Use basename with HashRouter to ensure all routes work correctly
   return (
     <Router>
+      <VisitorTracker />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
