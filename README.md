@@ -14,6 +14,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
+#### Webhook analytics (n8n)
+
+Este proyecto incluye un tracker (`src/components/VisitorTracker.tsx`) que manda un POST a n8n al salir de la página (evento `visibilitychange`).
+
+- En desarrollo (`npm start`) lee `REACT_APP_N8N_WEBHOOK_URL` desde `.env.development`.
+- En producción (`npm run build`) lee `REACT_APP_N8N_WEBHOOK_URL` desde `.env.production`.
+
+Para comprobar que se envía correctamente:
+
+1. Abre DevTools → Network.
+2. Navega por 1-2 rutas.
+3. Cambia de pestaña o cierra la pestaña.
+4. Verás un POST al webhook configurado con el payload `{ visitor, history, summary }`.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.,
@@ -26,6 +40,16 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
+
+#### Deploy (GitHub Pages / branch `gh_pages`)
+
+Este repo está pensado para servir el contenido estático de `build/`. Si usas una branch `gh_pages` como fuente del hosting, el flujo típico es:
+
+1. Asegura que `.env.production` tiene `REACT_APP_N8N_WEBHOOK_URL` apuntando al webhook de producción (no `webhook-test`).
+2. Genera el build.
+3. Publica el contenido de `build/` en la branch `gh_pages` (el mecanismo exacto depende de cómo lo tengas montado: manual o con GitHub Actions).
+
+Nota: Create React App solo expone variables de entorno que empiezan por `REACT_APP_`.
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
