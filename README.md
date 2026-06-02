@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Portfolio — Guillermo Villar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Personal project portfolio and blog page.** Built with React + TypeScript + Flask ML backend.
 
-## Available Scripts
+🌐 **Live:** https://www.g-villar.tech  
+📦 **GitHub Pages:** https://guillermo-villar.github.io/portfolio/
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Frontend:** React 18, TypeScript, CSS
+- **Backend:** Python Flask (ML endpoints: digit detection)
+- **Tracking:** n8n webhook (visitor analytics on `visibilitychange`)
+- **Deploy:** Manual build → `gh-pages` branch
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+---
 
-#### Webhook analytics (n8n)
+## Development
 
-Este proyecto incluye un tracker (`src/components/VisitorTracker.tsx`) que manda un POST a n8n al salir de la página (evento `visibilitychange`).
+```bash
+npm install
+npm start            # localhost:3000
+```
 
-- En desarrollo (`npm start`) lee `REACT_APP_N8N_WEBHOOK_URL` desde `.env.development`.
-- En producción (`npm run build`) lee `REACT_APP_N8N_WEBHOOK_URL` desde `.env.production`.
+### Environment
 
-Para comprobar que se envía correctamente:
+| File | Purpose |
+|---|---|
+| `.env.development` | Webhook URL for dev (n8n test) |
+| `.env.production` | Webhook URL for production (n8n live) |
 
-1. Abre DevTools → Network.
-2. Navega por 1-2 rutas.
-3. Cambia de pestaña o cierra la pestaña.
-4. Verás un POST al webhook configurado con el payload `{ visitor, history, summary }`.
+Only `REACT_APP_*` vars are exposed to the client.
 
-### `npm test`
+### Build
 
-Launches the test runner in the interactive watch mode.,
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm run build        # outputs to build/
+```
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deploy
 
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
+GitHub Pages serves from the `gh-pages` branch.
 
-#### Deploy (GitHub Pages / branch `gh_pages`)
+```bash
+git checkout gh-pages
+# copy build/* contents
+git commit -m "deploy: ..."
+git push origin gh-pages
+```
 
-Este repo está pensado para servir el contenido estático de `build/`. Si usas una branch `gh_pages` como fuente del hosting, el flujo típico es:
+The site auto-deploys after pushing to `gh-pages` (GitHub Pages source set to `gh-pages` branch).
 
-1. Asegura que `.env.production` tiene `REACT_APP_N8N_WEBHOOK_URL` apuntando al webhook de producción (no `webhook-test`).
-2. Genera el build.
-3. Publica el contenido de `build/` en la branch `gh_pages` (el mecanismo exacto depende de cómo lo tengas montado: manual o con GitHub Actions).
+---
 
-Nota: Create React App solo expone variables de entorno que empiezan por `REACT_APP_`.
+## Visitor Tracking
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`src/components/VisitorTracker.tsx` POSTs to an n8n webhook on tab close (`visibilitychange` → `hidden`).  
+Payload: `{ visitor, history, summary }`.
 
-### `npm run eject`
+Verify via DevTools → Network → switch tabs → look for POST to webhook URL.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ML Backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+`ml-backend/` contains a Flask app for MNIST digit detection.  
+Runs separately (not included in the frontend build).
