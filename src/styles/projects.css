@@ -86,10 +86,10 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 80%;
+  height: 100%;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.9) 100%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 75%, rgba(0, 0, 0, 0.95) 100%);
 }
 
 .project-card:hover .project-image {
@@ -109,6 +109,7 @@
   background: rgba(0, 0, 0, 0.7);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  z-index: 2;
 }
 
 .project-card:hover .project-overlay {
@@ -156,7 +157,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Home page project info styles - simplified layout */
