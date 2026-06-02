@@ -310,6 +310,59 @@
   .home > .projects-section {
     padding: 1rem;
   }
+
+  /* Hide "Try the demo" badge on mobile */
+  .project-demo.demo {
+    display: none;
+  }
+
+  /* Shrink corner gradient so it doesn't cover the info bar */
+  .project-card::after {
+    height: 72%;
+  }
+
+  /* Fix project info layout on mobile: title centered in remaining space, tech right */
+  .project-info,
+  .project-info.home-page-info {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: center !important;
+    height: auto !important;
+    min-height: 20%;
+    padding: 8px 12px;
+    z-index: 2;
+  }
+
+  .project-info h3,
+  .project-info .left-aligned-title {
+    font-size: 0.9rem;
+    padding: 0 4px 0 0;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    justify-self: auto !important;
+    align-self: auto !important;
+  }
+
+  .project-info .tech-stack {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 0;
+    flex-wrap: nowrap;
+    right: auto;
+    width: auto;
+    padding: 0;
+    grid-column: auto !important;
+  }
+
+  .project-info .tech-bullet {
+    padding: 0.2em 0.5em;
+    margin: 0 0 0 0.25em;
+    font-size: 0.68em;
+    white-space: nowrap;
+  }
 }
 
 /* Keep for Experience section compatibility */
