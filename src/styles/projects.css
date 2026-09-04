@@ -388,3 +388,7 @@
   color: #fff;
   text-align: center;
 }
+/* Sol Sombra stack */
+.circle.next\.js { background-color: #ffffff; }
+.circle.typescript { background-color: #3178C6; }
+.circle.postgis { background-color: #3E8E41; }

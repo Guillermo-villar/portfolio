@@ -6,14 +6,18 @@ import { getAssetPath } from '../config';
 interface ProjectData {
   title: string;
   image: string;
-  description: string; 
-  githubLink: string;
-  type: string;   
+  description: string;
+  // Both links are optional: a project can be closed-source, have no public
+  // deployment to visit, or neither.
+  githubLink?: string;
+  liveLink?: string;
+  liveLabel?: string;
+  type: string;
   isDemo: boolean;
   projStack: string;
 }
 
-const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, githubLink, type, projStack }) => {
+const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, githubLink, liveLink, liveLabel, type, projStack }) => {
   // Split the description into two paragraphs
   const paragraphs = description.split('. ');
   const midpoint = Math.ceil(paragraphs.length / 2);
@@ -34,7 +38,14 @@ const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, git
       'Web3': 3,
       'Blockchain': 3,
       'Machine-Learning': 5,
-      'Statistics': 4
+      'Statistics': 4,
+      'Next.js': 4,
+      'TypeScript': 4,
+      'PostgreSQL': 4,
+      'PostGIS': 3,
+      'GraphHopper': 3,
+      'MapLibre': 4,
+      'Docker': 4
     };
     
     return skillLevels[tech] || 3; // Default level 3 if not specified
@@ -82,9 +93,16 @@ const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, git
             <p className="project-description">{secondParagraph}</p>
             
             <div className="project-details">
-              <a href={githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                View on GitHub
-              </a>
+              {liveLink && (
+                <a href={liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                  {liveLabel || 'Visit the site'}
+                </a>
+              )}
+              {githubLink && (
+                <a href={githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                  View on GitHub
+                </a>
+              )}
               <p className="project-type">Type: {type}</p>
             </div>
           </div>

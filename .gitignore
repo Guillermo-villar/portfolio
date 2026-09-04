@@ -21,3 +21,9 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# environment files (never commit: they end up in a public repo)
+.env
+.env.development
+.env.production
+.env.test

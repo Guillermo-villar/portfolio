@@ -4,24 +4,26 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Projects from './pages/ProjectsPage';
 import AIDemo from './pages/AIProject'; 
-import Crypto from './pages/CryptoProject'; 
+import Crypto from './pages/CryptoProject';
+import SolSombra from './pages/SolSombraProject';
 import Blogs from './pages/Blogs';
 import BlogPost1 from './pages/BlogPost1';
 import BlogPost2 from './pages/BlogPost2';
 import BlogPost3 from './pages/BlogPost3';
 import About from './pages/About';
-import VisitorTracker from './components/VisitorTracker';
+import PageViewTracker from './components/PageViewTracker';
 
 function App() {
   // Use basename with HashRouter to ensure all routes work correctly
   return (
     <Router>
-      <VisitorTracker />
+      <PageViewTracker />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/ai-demo" element={<AIDemo />} />
         <Route path="/projects/crypto" element={<Crypto />} />
+        <Route path="/projects/solsombra" element={<SolSombra />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/1" element={<BlogPost1 />} />
         <Route path="/blog/2" element={<BlogPost2 />} />

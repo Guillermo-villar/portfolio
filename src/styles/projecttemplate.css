@@ -202,3 +202,12 @@
     width: auto; /* Allow natural width on mobile too */
   }
 }
+
+/* Sol Sombra stack */
+.circle.next\.js { background-color: #ffffff; }
+.circle.typescript { background-color: #3178C6; }
+.circle.postgresql { background-color: #336791; }
+.circle.postgis { background-color: #3E8E41; }
+.circle.graphhopper { background-color: #2C7BE5; }
+.circle.maplibre { background-color: #24B3A0; }
+.circle.docker { background-color: #2496ED; }
