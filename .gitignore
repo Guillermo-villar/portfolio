@@ -27,3 +27,6 @@ yarn-error.log*
 .env.development
 .env.production
 .env.test
+
+# build output: published to the gh-pages branch, never tracked on master
+/build
