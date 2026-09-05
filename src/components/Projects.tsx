@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaPlay, FaExternalLinkAlt } from 'react-icons/fa';
 import '../styles/projects.css';
 import { getAssetPath } from '../config';
 
@@ -131,12 +132,7 @@ const Projects: React.FC<{ limit?: number; showDemo?: boolean; isHomePage?: bool
       <h2>Projects</h2>
       <div className="projects-container">
         {projectsToShow.map((project) => (
-          <div
-            key={project.id}
-            className={`project-card ${project.demoLink ? 'demo' : ''} ${
-              project.fit === 'contain' ? 'flat' : ''
-            }`}
-          >
+          <div key={project.id} className={`project-card ${project.demoLink ? 'demo' : ''}`}>
             <img
               src={getAssetPath(project.image)}
               alt={project.title}
@@ -152,7 +148,14 @@ const Projects: React.FC<{ limit?: number; showDemo?: boolean; isHomePage?: bool
               {project.demoLink && showDemo && (
                 <div className="project-demo demo">
                   <SmartLink to={project.demoLink} className="project-demo-link">
-                    {project.demoLabel || 'Try the demo!!'}
+                    {/* A play glyph for something that runs here, the
+                        external-link glyph for something that opens a tab. */}
+                    {isExternalLink(project.demoLink) ? (
+                      <FaExternalLinkAlt aria-hidden="true" />
+                    ) : (
+                      <FaPlay aria-hidden="true" />
+                    )}
+                    <span>{project.demoLabel || 'Try the demo!!'}</span>
                   </SmartLink>
                 </div>
               )}

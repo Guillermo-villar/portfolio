@@ -123,16 +123,6 @@
   filter: blur(3px);
 }
 
-/*
- * The corner vignette exists to darken the edges of a photograph so the card
- * reads against the page. Over a flat letterbox it has nothing to darken and
- * just smears the colour into grey-brown, which is very visible on the light
- * social cards - so cards showing artwork whole opt out of it.
- */
-.project-card.flat::after {
-  display: none;
-}
-
 .project-overlay {
   position: absolute;
   top: 0;
@@ -194,7 +184,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.15rem;
+  gap: 0.3rem;
   /*
    * Above .project-overlay, not level with it. The info bar grows past the old
    * fixed 20% once it also carries the demo badge, so it now reaches into the
@@ -324,14 +314,11 @@
 .circle.machine-learning { background-color: #ff9800; }
 .circle.statistics { background-color: #ff9800; }
 
-/* Aplica la animación solo cuando el proyecto es demo */
+/* Row holding the call to action, when the project has one */
 .project-demo.demo {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  transform-origin: left center;
-  animation: attentionRotate 6s ease-in-out infinite;
-  animation-fill-mode: forwards;
 }
 
 /* Style for the demo marker - removed the border */
@@ -339,22 +326,76 @@
   /* Border removed */
 }
 
+/*
+ * A real button rather than a coloured word. It is the only call to action
+ * visible without hovering, so it gets the accent fill, the dark-on-orange
+ * contrast the "Visit Project" button uses, and a glyph saying what happens:
+ * a play triangle for a demo that runs here, an external-link arrow for one
+ * that opens a tab.
+ */
 .project-demo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.4em 0.95em;
+  border-radius: 999px;
+  background-color: #ff9800;
+  color: #111;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
   text-decoration: none;
-  color: #ff9800;
-  font-weight: bold;
-  font-size: 0.95rem;
   white-space: nowrap;
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  /* Replaces the old wobble: a halo that breathes outwards and fades. */
+  animation: demoPulse 3.2s ease-in-out infinite;
 }
 
-.project-demo-link:hover {
-  text-decoration: underline;
+.project-demo-link svg {
+  font-size: 0.78em;
+  flex: none;
+}
+
+.project-demo-link:hover,
+.project-demo-link:focus-visible {
+  background-color: #ffb046;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.45);
+  /* Stop competing for attention once it has it. */
+  animation: none;
+}
+
+.project-demo-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.project-demo-link:active {
+  transform: translateY(0);
+  background-color: #e68900;
+}
+
+@keyframes demoPulse {
+  0%,
+  100% {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 0 0 rgba(255, 152, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 0 7px rgba(255, 152, 0, 0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-demo.demo {
+  .project-demo-link {
     animation: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .project-demo-link:hover,
+  .project-demo-link:focus-visible {
+    transform: none;
   }
 }
 
@@ -381,7 +422,8 @@
   }
 
   .project-demo-link {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    padding: 0.35em 0.85em;
   }
 
   .project-card::after {
