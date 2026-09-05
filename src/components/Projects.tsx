@@ -144,21 +144,26 @@ const Projects: React.FC<{ limit?: number; showDemo?: boolean; isHomePage?: bool
                 e.currentTarget.src = getAssetPath('comin.webp'); // Fallback image
               }}
             />
+            {/*
+              Floated over the artwork rather than placed in the info bar: in
+              the bar it added a second row, which made the two cards that have
+              a demo taller than the five that do not.
+            */}
+            {project.demoLink && showDemo && (
+              <div className="project-demo demo">
+                <SmartLink to={project.demoLink} className="project-demo-link">
+                  {/* A play glyph for something that runs here, the
+                      external-link glyph for something that opens a tab. */}
+                  {isExternalLink(project.demoLink) ? (
+                    <FaExternalLinkAlt aria-hidden="true" />
+                  ) : (
+                    <FaPlay aria-hidden="true" />
+                  )}
+                  <span>{project.demoLabel || 'Try the demo!!'}</span>
+                </SmartLink>
+              </div>
+            )}
             <div className={`project-info ${isHomePage ? 'home-page-info' : ''}`}>
-              {project.demoLink && showDemo && (
-                <div className="project-demo demo">
-                  <SmartLink to={project.demoLink} className="project-demo-link">
-                    {/* A play glyph for something that runs here, the
-                        external-link glyph for something that opens a tab. */}
-                    {isExternalLink(project.demoLink) ? (
-                      <FaExternalLinkAlt aria-hidden="true" />
-                    ) : (
-                      <FaPlay aria-hidden="true" />
-                    )}
-                    <span>{project.demoLabel || 'Try the demo!!'}</span>
-                  </SmartLink>
-                </div>
-              )}
               <div className="project-info-row">
                 <h3 className={isHomePage ? 'left-aligned-title' : ''}>{project.title}</h3>
                 <div className="tech-stack">

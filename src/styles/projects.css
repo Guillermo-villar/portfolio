@@ -184,7 +184,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.3rem;
   /*
    * Above .project-overlay, not level with it. The info bar grows past the old
    * fixed 20% once it also carries the demo badge, so it now reaches into the
@@ -314,10 +313,20 @@
 .circle.machine-learning { background-color: #ff9800; }
 .circle.statistics { background-color: #ff9800; }
 
-/* Row holding the call to action, when the project has one */
+/*
+ * The call to action floats over the top-left of the artwork. It used to be a
+ * row inside the info bar, which gave the two cards that have a demo a taller
+ * bar than the five that do not — the grid has one bar height again.
+ *
+ * z-index 4 puts it above the hover overlay (2) and the info bar (3), so it
+ * stays visible and clickable while the overlay is up.
+ */
 .project-demo.demo {
+  position: absolute;
+  top: 0.65rem;
+  left: 0.65rem;
+  z-index: 4;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
 }
 
@@ -347,7 +356,7 @@
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.35);
   transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   /* Replaces the old wobble: a halo that breathes outwards and fades. */
   animation: demoPulse 3.2s ease-in-out infinite;
@@ -362,7 +371,7 @@
 .project-demo-link:focus-visible {
   background-color: #ffb046;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.45);
+  box-shadow: 0 4px 14px rgba(255, 152, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.35);
   /* Stop competing for attention once it has it. */
   animation: none;
 }
@@ -380,10 +389,12 @@
 @keyframes demoPulse {
   0%,
   100% {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 0 0 rgba(255, 152, 0, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.35),
+      0 0 0 0 rgba(255, 152, 0, 0.5);
   }
   50% {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 0 7px rgba(255, 152, 0, 0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.35),
+      0 0 0 7px rgba(255, 152, 0, 0);
   }
 }
 
@@ -417,13 +428,13 @@
    * gets the demo link too - just smaller, and centred with the rest.
    */
   .project-demo.demo {
-    justify-content: center;
-    transform-origin: center;
+    top: 0.5rem;
+    left: 0.5rem;
   }
 
   .project-demo-link {
-    font-size: 0.75rem;
-    padding: 0.35em 0.85em;
+    font-size: 0.72rem;
+    padding: 0.33em 0.8em;
   }
 
   .project-card::after {
