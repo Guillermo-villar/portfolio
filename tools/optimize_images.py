@@ -5,15 +5,24 @@ most, but several were shipping at 1024px and up to 220 KB. Nothing here is
 displayed above 800px, so that is the cap; the sources are kept losslessly
 identical in aspect ratio and only re-encoded, never cropped.
 
+Safe to re-run: a re-encode is only kept when it saves at least MIN_SAVING of
+the current file. Without that guard each run would lossily re-encode work the
+previous run had already done, shaving a few percent and a little quality off
+every pass.
+
 Usage:  python tools/optimize_images.py
 """
 from __future__ import annotations
 
+import io
 import pathlib
 
 from PIL import Image
 
 PUBLIC = pathlib.Path(__file__).resolve().parent.parent / "public"
+
+# Keep a re-encode only if it saves at least this fraction of the file.
+MIN_SAVING = 0.10
 
 # filename -> longest edge in CSS pixels the site can ever show it at, doubled
 # for high-DPI screens and rounded to something sensible.
@@ -24,8 +33,8 @@ TARGETS = {
     "comin.webp": 800,
     "outp.webp": 800,
     "web.webp": 800,
-    "solsombra.webp": 800,
     "solsombra-banner.webp": 1200,
+    "solsombra-og.jpg": 1200,
     "sfsu.jpg": 300,
     "OpenAI.webp": 300,
 }
@@ -55,20 +64,32 @@ def main() -> None:
                     (round(width * scale), round(height * scale)), Image.LANCZOS
                 )
 
-            # Re-encode in place, keeping the extension the markup references.
+            # Encode to a buffer first so a re-encode that saves nothing can be
+            # thrown away rather than written over a perfectly good file.
+            buffer = io.BytesIO()
             suffix = path.suffix.lower()
             if suffix == ".webp":
-                image.save(path, "WEBP", quality=82, method=6)
+                image.save(buffer, "WEBP", quality=82, method=6)
             elif suffix in (".jpg", ".jpeg"):
-                image.convert("RGB").save(path, "JPEG", quality=82, optimize=True, progressive=True)
+                image.convert("RGB").save(
+                    buffer, "JPEG", quality=82, optimize=True, progressive=True
+                )
             else:
-                image.save(path, "PNG", optimize=True)
+                image.save(buffer, "PNG", optimize=True)
+            size = image.size
 
-        after = path.stat().st_size
+        candidate = buffer.getvalue()
+        if len(candidate) <= before * (1 - MIN_SAVING):
+            path.write_bytes(candidate)
+            after = len(candidate)
+            change = f"-{100 - after * 100 // before}%"
+        else:
+            after = before
+            change = "kept (already optimal)"
+
         total_before += before
         total_after += after
-        change = "unchanged" if after >= before else f"-{100 - after * 100 // before}%"
-        print(f"{name:24s} {before // 1024:>4} KB -> {after // 1024:>4} KB  {image.size} {change}")
+        print(f"{name:24s} {before // 1024:>4} KB -> {after // 1024:>4} KB  {size} {change}")
 
     print(f"\ntotal {total_before // 1024} KB -> {total_after // 1024} KB")
 

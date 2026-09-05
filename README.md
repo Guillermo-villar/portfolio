@@ -125,9 +125,24 @@ python tools/export_mnist_model.py mnist_model.h5 public/models/mnist-mlp.bin
   card, also used as the Web Portfolio project thumbnail) and the square
   `icon-192.png` / `icon-512.png` that `manifest.json` declares.
 - `tools/optimize_images.py` re-encodes the oversized files in `public/`.
-  Nothing on the site is displayed above 800px.
+  Nothing on the site is displayed above 800px. It keeps a re-encode only when
+  it saves at least 10%, so rerunning it cannot slowly degrade files a previous
+  run already optimized.
 
 Both are idempotent — rerun them after changing the source artwork.
+
+`public/solsombra-og.jpg` is not generated here: it is the `og:image` that
+solsombra.madrid serves, fetched from that site so the card matches whatever
+the project itself publishes. Refresh it with:
+
+```bash
+curl -sL -o public/solsombra-og.jpg https://solsombra.madrid/og.jpg
+python tools/optimize_images.py
+```
+
+Both social cards carry type, so their project tiles set `fit: 'contain'` with
+a `fitBackground` matching the artwork's own background — cropping them would
+cut a sentence in half, and a mismatched letterbox reads as a border.
 
 ---
 

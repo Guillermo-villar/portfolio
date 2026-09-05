@@ -24,6 +24,11 @@ interface Project {
    * that one is shown whole instead.
    */
   fit?: 'cover' | 'contain';
+  /**
+   * Letterbox colour behind a 'contain' image. Set it to the artwork's own
+   * background so the bars read as padding rather than as a border.
+   */
+  fitBackground?: string;
 }
 
 const projects: Project[] = [
@@ -32,11 +37,14 @@ const projects: Project[] = [
     title: 'Sol Sombra',
     description:
       'Walking routes across Madrid chosen by how much sun each stretch of pavement gets',
-    image: 'solsombra.webp',
+    // The social card solsombra.madrid serves as its own og:image.
+    image: 'solsombra-og.jpg',
     link: '/projects/solsombra',
     techStack: 'Next.js, PostGIS',
     demoLink: 'https://solsombra.madrid',
-    demoLabel: 'See it live!!'
+    demoLabel: 'See it live!!',
+    fit: 'contain',
+    fitBackground: '#f7ecd6'
   },
   {
     id: 2,
@@ -72,7 +80,8 @@ const projects: Project[] = [
     image: 'og-image.png',
     link: '/blog/2',
     techStack: 'Web, React, JavaScript',
-    fit: 'contain'
+    fit: 'contain',
+    fitBackground: '#1a1a1a'
   },
   {
     id: 6,
@@ -122,11 +131,17 @@ const Projects: React.FC<{ limit?: number; showDemo?: boolean; isHomePage?: bool
       <h2>Projects</h2>
       <div className="projects-container">
         {projectsToShow.map((project) => (
-          <div key={project.id} className={`project-card ${project.demoLink ? 'demo' : ''}`}>
+          <div
+            key={project.id}
+            className={`project-card ${project.demoLink ? 'demo' : ''} ${
+              project.fit === 'contain' ? 'flat' : ''
+            }`}
+          >
             <img
               src={getAssetPath(project.image)}
               alt={project.title}
               className={`project-image ${project.fit === 'contain' ? 'contain' : ''}`}
+              style={project.fitBackground ? { backgroundColor: project.fitBackground } : undefined}
               loading="lazy"
               decoding="async"
               onError={(e) => {

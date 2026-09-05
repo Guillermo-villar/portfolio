@@ -88,6 +88,8 @@
  */
 .project-image.contain {
   object-fit: contain;
+  /* Overridden per card via the fitBackground field, which carries the
+     artwork's own background colour. */
   background-color: #1a1a1a;
   filter: none;
   /*
@@ -119,6 +121,16 @@
 
 .project-card:hover .project-image {
   filter: blur(3px);
+}
+
+/*
+ * The corner vignette exists to darken the edges of a photograph so the card
+ * reads against the page. Over a flat letterbox it has nothing to darken and
+ * just smears the colour into grey-brown, which is very visible on the light
+ * social cards - so cards showing artwork whole opt out of it.
+ */
+.project-card.flat::after {
+  display: none;
 }
 
 .project-overlay {
@@ -358,8 +370,18 @@
 
 /* Compact card layout — applies when the card is narrow, regardless of viewport */
 @container card (max-width: 450px) {
+  /*
+   * The badge used to be hidden here: it was absolutely positioned over the
+   * title and there was no room for both. It has its own row now, so a phone
+   * gets the demo link too - just smaller, and centred with the rest.
+   */
   .project-demo.demo {
-    display: none;
+    justify-content: center;
+    transform-origin: center;
+  }
+
+  .project-demo-link {
+    font-size: 0.8rem;
   }
 
   .project-card::after {
