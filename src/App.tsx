@@ -3,32 +3,34 @@ import './App.css';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Projects from './pages/ProjectsPage';
-import AIDemo from './pages/AIProject'; 
+import AIProject from './pages/AIProject';
+import DigitDemo from './pages/DigitDemo';
 import Crypto from './pages/CryptoProject';
 import SolSombra from './pages/SolSombraProject';
 import Blogs from './pages/Blogs';
-import BlogPost1 from './pages/BlogPost1';
-import BlogPost2 from './pages/BlogPost2';
-import BlogPost3 from './pages/BlogPost3';
+import BlogPostPage from './pages/BlogPostPage';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
 import PageViewTracker from './components/PageViewTracker';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-  // Use basename with HashRouter to ensure all routes work correctly
   return (
     <Router>
       <PageViewTracker />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/ai-demo" element={<AIDemo />} />
+        <Route path="/projects/ai-demo" element={<AIProject />} />
+        <Route path="/projects/ai-demo/live" element={<DigitDemo />} />
         <Route path="/projects/crypto" element={<Crypto />} />
         <Route path="/projects/solsombra" element={<SolSombra />} />
         <Route path="/blogs" element={<Blogs />} />
-        <Route path="/blog/1" element={<BlogPost1 />} />
-        <Route path="/blog/2" element={<BlogPost2 />} />
-        <Route path="/blog/3" element={<BlogPost3 />} />
+        <Route path="/blog/:id" element={<BlogPostPage />} />
         <Route path="/about" element={<About />} />
+        {/* Anything else used to mount an empty page with no way back. */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

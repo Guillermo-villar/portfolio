@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://g-villar.tech/sitemap.xml

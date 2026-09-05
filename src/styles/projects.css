@@ -81,6 +81,29 @@
   transition: filter 0.3s ease-in-out;
 }
 
+/*
+ * For images that are a composition rather than a photograph - the social
+ * card, which has type in it - show the whole thing. The backdrop matches the
+ * card's own so the letterboxing reads as padding.
+ */
+.project-image.contain {
+  object-fit: contain;
+  background-color: #1a1a1a;
+  filter: none;
+  /*
+   * The info bar is opaque and sits over the bottom of the tile, so reserve
+   * that strip as padding: object-fit measures the content box, which keeps the
+   * whole composition above the bar instead of tucking its last line behind it.
+   */
+  box-sizing: border-box;
+  /*
+   * A fixed strip, not a percentage: percentage padding resolves against the
+   * element's *width*, which on a wide card reserved ~148px and squeezed the
+   * artwork down to a postage stamp.
+   */
+  padding-bottom: 56px;
+}
+
 /* Gradiente oscuro en las esquinas — limitado a la zona de la imagen (80%) */
 .project-card::after {
   content: '';
@@ -150,24 +173,45 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 20%;
+  min-height: 20%;
+  box-sizing: border-box;
+  padding: 0.4rem 0.75rem;
   opacity: 0.95;
   background-color: black;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.15rem;
+  /*
+   * Above .project-overlay, not level with it. The info bar grows past the old
+   * fixed 20% once it also carries the demo badge, so it now reaches into the
+   * overlay's band; at equal z-index the overlay wins on DOM order and swallows
+   * clicks aimed at the badge.
+   */
+  z-index: 3;
+}
+
+/*
+ * Title and tech chips share one row.
+ *
+ * The chips used to be position:absolute at right:10px while the title was a
+ * centred flex item spanning the full width, so on wider cards the chips sat on
+ * top of the title and cut it off - "Crypto Safe Fileshare" read as "Crypto
+ * Safe Files". A two-column grid gives each of them its own space, and the
+ * minmax(0, 1fr) lets the title column actually shrink instead of overflowing.
+ */
+.project-info-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  text-align: center;
-  z-index: 2;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 /* Home page project info styles - simplified layout */
-.project-info.home-page-info {
-  display: grid;
-  grid-template-columns: 40% 60%;
-  padding: 0 10px;
-  align-items: center;
+.project-info.home-page-info .project-info-row {
+  grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
 }
 
 /* Left aligned title for home page */
@@ -184,6 +228,11 @@
   margin: 0;
   font-size: 1rem;
   font-weight: bold;
+  text-align: left;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .project-info p {
@@ -194,25 +243,17 @@
 
 /* Tech stack container */
 .tech-stack {
-  position: absolute;
   display: flex;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   justify-content: flex-end;
   align-items: center;
-  right: 10px;
+  min-width: 0;
 }
 
-/* Tech stack in home page - grid positioning instead of absolute */
+/* Tech stack in home page - slightly tighter */
 .project-info.home-page-info .tech-stack {
-  position: static;
-  display: flex;
-  flex-wrap: nowrap;
   gap: 0.3rem;
-  justify-content: flex-end;
-  grid-column: 2;
-  align-items: center;
-  height: 100%;
-  padding-right: 15px;
   overflow: hidden;
 }
 
@@ -273,23 +314,12 @@
 
 /* Aplica la animación solo cuando el proyecto es demo */
 .project-demo.demo {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  animation: attentionRotate 3s ease-in-out infinite;
-  animation-duration: 6s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #ff9800;
-  padding-left: 1rem;
-  white-space: nowrap;
-  z-index: 2;
+  transform-origin: left center;
+  animation: attentionRotate 6s ease-in-out infinite;
+  animation-fill-mode: forwards;
 }
 
 /* Style for the demo marker - removed the border */
@@ -297,13 +327,23 @@
   /* Border removed */
 }
 
-.project-demo.demo a {
+.project-demo-link {
   text-decoration: none;
-  color: inherit;
+  color: #ff9800;
   font-weight: bold;
-  font-size: 1.1rem;
-  padding-left: 1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
   cursor: pointer;
+}
+
+.project-demo-link:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-demo.demo {
+    animation: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -326,6 +366,10 @@
     height: 72%;
   }
 
+  .project-image.contain {
+    padding-bottom: 74px;
+  }
+
   .project-overlay {
     height: 72%;
   }
@@ -340,7 +384,15 @@
     min-height: 28%;
     padding: 6px 10px;
     gap: 4px;
-    z-index: 2;
+    z-index: 3;
+  }
+
+  .project-info-row,
+  .project-info.home-page-info .project-info-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px;
   }
 
   .project-info h3,
@@ -392,3 +444,5 @@
 .circle.next\.js { background-color: #ffffff; }
 .circle.typescript { background-color: #3178C6; }
 .circle.postgis { background-color: #3E8E41; }
+.circle.\?\?\? { background-color: #9e9e9e; }
+.circle.\!\!\! { background-color: #9e9e9e; }

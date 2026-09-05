@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import '../styles/projecttemplate.css';
 import { getAssetPath } from '../config';
@@ -8,7 +9,8 @@ interface ProjectData {
   image: string;
   description: string;
   // Both links are optional: a project can be closed-source, have no public
-  // deployment to visit, or neither.
+  // deployment to visit, or neither. liveLink may point at another site or at
+  // an internal route such as the in-browser digit demo.
   githubLink?: string;
   liveLink?: string;
   liveLabel?: string;
@@ -16,6 +18,8 @@ interface ProjectData {
   isDemo: boolean;
   projStack: string;
 }
+
+const isExternal = (link: string): boolean => /^https?:\/\//.test(link);
 
 const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, githubLink, liveLink, liveLabel, type, projStack }) => {
   // Split the description into two paragraphs
@@ -85,7 +89,13 @@ const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, git
           <h1>{title}</h1>
           
           <div className="image-container">
-            <img src={getAssetPath(image)} alt={title} className="project-image" />
+            <img
+              src={getAssetPath(image)}
+              alt={title}
+              className="project-image"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           
           <div className="project-description-container">
@@ -93,11 +103,21 @@ const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, git
             <p className="project-description">{secondParagraph}</p>
             
             <div className="project-details">
-              {liveLink && (
-                <a href={liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                  {liveLabel || 'Visit the site'}
-                </a>
-              )}
+              {liveLink &&
+                (isExternal(liveLink) ? (
+                  <a
+                    href={liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    {liveLabel || 'Visit the site'}
+                  </a>
+                ) : (
+                  <Link to={liveLink} className="project-link">
+                    {liveLabel || 'Visit the site'}
+                  </Link>
+                ))}
               {githubLink && (
                 <a href={githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
                   View on GitHub

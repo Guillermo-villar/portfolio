@@ -11,9 +11,10 @@ const Hero: React.FC = () => {
         src={getAssetPath('icon.webp')} 
         alt="Profile" 
         className="hero-image"
+        width={200}
+        height={212}
         onError={(e) => {
           if (!imageError) {
-            console.log('Failed to load profile image: icon.webp');
             e.currentTarget.src = `${process.env.PUBLIC_URL}/icon.webp`;
             setImageError(true);
           }
