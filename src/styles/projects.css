@@ -144,75 +144,50 @@
   background-color: #e68900;
 }
 
-/* Project info container - base styling */
+/* Project info bar — title left, tech pills right, shared by all pages */
 .project-info {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 20%;
+  box-sizing: border-box;
   opacity: 0.95;
   background-color: black;
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 2;
-}
-
-/* Home page project info styles - simplified layout */
-.project-info.home-page-info {
   display: grid;
-  grid-template-columns: 40% 60%;
-  padding: 0 10px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
   align-items: center;
-}
-
-/* Left aligned title for home page */
-.left-aligned-title {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: left;
-  align-self: center;
-  justify-self: start;
+  gap: 8px;
+  padding: 0 10px;
+  z-index: 2;
 }
 
 .project-info h3 {
   margin: 0;
   font-size: 1rem;
   font-weight: bold;
+  text-align: left;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .project-info p {
   margin: 0;
   font-size: 0.85rem;
   color: #ccc;
-} 
-
-/* Tech stack container */
-.tech-stack {
-  position: absolute;
-  display: flex;
-  gap: 0.5rem;
-  justify-content: flex-end;
-  align-items: center;
-  right: 10px;
 }
 
-/* Tech stack in home page - grid positioning instead of absolute */
-.project-info.home-page-info .tech-stack {
-  position: static;
+/* Tech stack pills — right column; clipped rather than covering the title */
+.tech-stack {
   display: flex;
   flex-wrap: nowrap;
   gap: 0.3rem;
   justify-content: flex-end;
-  grid-column: 2;
   align-items: center;
-  height: 100%;
-  padding-right: 15px;
+  min-width: 0;
   overflow: hidden;
 }
 
@@ -232,8 +207,9 @@
   pointer-events: none;
 }
 
-/* Make tech-bullets in homepage more compact but still clearly visible */
-.project-info.home-page-info .tech-bullet {
+/* Compact tech pills inside the info bar — shrink with ellipsis instead of
+   being hard-clipped at the card edge when space is tight */
+.project-info .tech-bullet {
   padding: 0.25em 0.7em;
   margin: 0.1em;
   font-size: 0.8em;
@@ -241,10 +217,18 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
-/* Make circle indicator slightly larger on home page */
-.project-info.home-page-info .tech-bullet .circle {
+.project-info .tech-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-info .tech-bullet .circle {
   width: 8px;
   height: 8px;
   margin-right: 0.4em;
@@ -271,39 +255,29 @@
 .circle.machine-learning { background-color: #ff9800; }
 .circle.statistics { background-color: #ff9800; }
 
-/* Aplica la animación solo cuando el proyecto es demo */
-.project-demo.demo {
+/* Demo badge — pill over the top-left of the card image */
+.demo-badge {
   position: absolute;
   top: 10px;
   left: 10px;
-  animation: attentionRotate 3s ease-in-out infinite;
-  animation-duration: 6s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #ff9800;
-  padding-left: 1rem;
-  white-space: nowrap;
-  z-index: 2;
-}
-
-/* Style for the demo marker - removed the border */
-.project-card.demo {
-  /* Border removed */
-}
-
-.project-demo.demo a {
+  z-index: 3;
+  background: #ff9800;
+  color: #222;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   text-decoration: none;
-  color: inherit;
-  font-weight: bold;
-  font-size: 1.1rem;
-  padding-left: 1rem;
-  cursor: pointer;
+  padding: 0.4em 0.9em;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.demo-badge:hover {
+  background: #ffb329;
+  transform: scale(1.06);
 }
 
 @media (max-width: 768px) {
@@ -318,8 +292,11 @@
 
 /* Compact card layout — applies when the card is narrow, regardless of viewport */
 @container card (max-width: 450px) {
-  .project-demo.demo {
-    display: none;
+  .demo-badge {
+    font-size: 0.62rem;
+    padding: 0.3em 0.7em;
+    top: 8px;
+    left: 8px;
   }
 
   .project-card::after {
