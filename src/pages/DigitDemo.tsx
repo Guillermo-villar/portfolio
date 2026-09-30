@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { loadModel, predict, MnistModel } from '../demo/mnistModel';
 import { imageDataToIntensity, toModelInput, SIZE } from '../demo/preprocess';
 import { getAssetPath } from '../config';
+import { useDocumentTitle } from '../utils';
 import '../styles/digitdemo.css';
 
 /** Canvas is a multiple of 28 so the preview grid lines up exactly. */
@@ -17,6 +18,7 @@ interface Point {
 }
 
 const DigitDemo: React.FC = () => {
+  useDocumentTitle('AI Digit Detector — live demo');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewRef = useRef<HTMLCanvasElement>(null);
   const drawing = useRef(false);
@@ -159,6 +161,7 @@ const DigitDemo: React.FC = () => {
     <div className="digit-demo-page">
       <Header />
       <main className="digit-demo">
+        <Link to="/projects/ai-demo" className="back-link">← About the project</Link>
         <header className="digit-demo-intro">
           <h1>AI Digit Detector</h1>
           <p>
@@ -246,9 +249,6 @@ const DigitDemo: React.FC = () => {
             MNIST test set. The weights are 108&nbsp;KB of int8, loaded on demand and evaluated in
             plain TypeScript &mdash; no machine-learning library in the bundle.
           </p>
-          <Link to="/projects/ai-demo" className="digit-back">
-            Read about the project
-          </Link>
         </footer>
       </main>
       <Footer />

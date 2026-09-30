@@ -30,3 +30,18 @@ test('home page shows current experience and projects', () => {
   expect(screen.getByText('Graduate Tech Program')).toBeInTheDocument();
   expect(screen.getByRole('link', { name: 'Sol Sombra' })).toBeInTheDocument();
 });
+
+test('digit demo route loads lazily and shows the canvas controls', async () => {
+  window.HTMLCanvasElement.prototype.getContext = jest.fn(() => null) as never;
+  global.fetch = jest.fn(() => new Promise(() => {})) as never;
+  window.location.hash = '#/projects/ai-demo/live';
+  render(<App />);
+  expect(await screen.findByRole('heading', { level: 1, name: 'AI Digit Detector' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Clear' })).toBeInTheDocument();
+});
+
+test.each(['#/this-does-not-exist', '#/blog/99'])('%s shows the 404 page', (hash) => {
+  window.location.hash = hash;
+  render(<App />);
+  expect(screen.getByRole('heading', { level: 1, name: /This page doesn't exist/i })).toBeInTheDocument();
+});

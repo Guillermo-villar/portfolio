@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import './styles/tech-colors.css';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
@@ -10,8 +10,11 @@ import SolSombra from './pages/SolSombraProject';
 import Blogs from './pages/Blogs';
 import BlogPost from './components/BlogPostTemplate';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
 import PageViewTracker from './components/PageViewTracker';
 import ScrollToTop from './components/ScrollToTop';
+
+const DigitDemo = React.lazy(() => import('./pages/DigitDemo'));
 
 function App() {
   // Use basename with HashRouter to ensure all routes work correctly
@@ -23,12 +26,20 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/ai-demo" element={<AIDemo />} />
+        <Route
+          path="/projects/ai-demo/live"
+          element={
+            <Suspense fallback={null}>
+              <DigitDemo />
+            </Suspense>
+          }
+        />
         <Route path="/projects/crypto" element={<Crypto />} />
         <Route path="/projects/solsombra" element={<SolSombra />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/about" element={<About />} />
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

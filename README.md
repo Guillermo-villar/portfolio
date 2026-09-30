@@ -63,23 +63,25 @@ git push origin gh-pages
 
 ## Adding a project
 
-1. Drop the card image (and an optional wider banner) in `public/`.
-2. Add an entry to the array in `src/components/Projects.tsx`. The card lays
-   the title and the tech chips out in a two-column grid, so a long title is
-   ellipsised rather than run over — but two or three `techStack` entries is
-   still the most that reads well.
-   Set `demoLink` only if there is something real to try; it drives the
-   "Try the demo!!" badge. Set `fit: 'contain'` for artwork with type in it
-   that must not be cropped.
-3. Add a page under `src/pages/` that renders `ProjectsTemplate`. Do **not**
-   render `<Header />` there — the template already does.
+1. Drop the card image in `public/`. Cards show it in a 1200×630 box with
+   `object-fit: cover`, so keep text in the artwork away from the edges.
+2. Add an entry to the array in `src/components/Projects.tsx`. A `Project` is
+   `{ title, description, image, link, techStack: string[], badge?: string }`.
+   `link` is either an internal route (rendered as a router link) or an
+   `https://` URL (opens in a new tab). `badge` is an optional pill next to the
+   title, e.g. `Live` or `Live demo`. Two or three `techStack` entries is what
+   reads well.
+3. Add a page under `src/pages/` that renders `ProjectsTemplate` with `title`,
+   `tagline`, `image`, `paragraphs`, `stack` and `type`. Do **not** render
+   `<Header />` there — the template already does.
 4. Register the route in `src/App.tsx`.
-5. If the stack uses a technology that has no colour yet, add a
-   `.circle.<lowercased-name>` rule to `src/styles/projects.css` and
-   `src/styles/projecttemplate.css`.
+5. Tech dot colours live in `src/styles/tech-colors.css`, keyed by the class
+   `techClass()` (in `src/utils.ts`) generates from the tech name — `Next.js`
+   becomes `next-js`. If a technology has no colour yet, add a rule there.
 
-`githubLink` and `liveLink` are both optional: a closed-source project can link
-only to its deployment.
+`githubLink` and `liveLink` are both optional. `liveLink` may be an external
+URL (opens in a new tab) or an internal route such as `/projects/ai-demo/live`
+(rendered as a router link); `liveLabel` sets the button text.
 
 ---
 
@@ -122,7 +124,7 @@ python tools/export_mnist_model.py mnist_model.h5 public/models/mnist-mlp.bin
 ## Images
 
 - `tools/make_images.py` renders `public/og-image.png` (the 1200×630 social
-  card, also used as the Web Portfolio project thumbnail) and the square
+  card) and the square
   `icon-192.png` / `icon-512.png` that `manifest.json` declares.
 - `tools/optimize_images.py` re-encodes the oversized files in `public/`.
   Nothing on the site is displayed above 800px. It keeps a re-encode only when
@@ -139,10 +141,6 @@ the project itself publishes. Refresh it with:
 curl -sL -o public/solsombra-og.jpg https://solsombra.madrid/og.jpg
 python tools/optimize_images.py
 ```
-
-Both social cards carry type, so their project tiles set `fit: 'contain'` with
-a `fitBackground` matching the artwork's own background — cropping them would
-cut a sentence in half, and a mismatched letterbox reads as a border.
 
 ---
 

@@ -15,7 +15,7 @@ interface Project {
 
 const projects: Project[] = [
   { title: 'Sol Sombra', description: 'Walking routes across Madrid chosen by how much sun each stretch of pavement gets.', image: 'solsombra-og.jpg', link: '/projects/solsombra', techStack: ['TypeScript', 'Next.js', 'PostGIS'], badge: 'Live' },
-  { title: 'AI Digit Detector', description: 'Handwritten digit recognition with a convolutional neural network trained on MNIST.', image: 'AI.webp', link: '/projects/ai-demo', techStack: ['Python', 'TensorFlow'] },
+  { title: 'AI Digit Detector', description: 'A neural network that reads your handwriting. Draw a digit and try it live in the browser.', image: 'AI.webp', link: '/projects/ai-demo', techStack: ['Python', 'TensorFlow'], badge: 'Live demo' },
   { title: 'Crypto Safe Fileshare', description: 'Cryptographically robust file-sharing system with a custom certificate system.', image: 'outp.webp', link: '/projects/crypto', techStack: ['Python', 'Cryptography'] },
   { title: 'NGO Crypto Funding', description: "A Web3 answer to NGOs' lack of accountability.", image: 'G3.png', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7310295376819806208/', techStack: ['Web3', 'Blockchain'] },
   { title: 'Web Portfolio', description: 'This very website, built from scratch.', image: 'web.webp', link: '/blog/2', techStack: ['React', 'TypeScript'] },

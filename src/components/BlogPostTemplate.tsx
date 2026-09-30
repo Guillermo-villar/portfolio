@@ -6,6 +6,7 @@ import '../styles/blogs.css';
 import { getAssetPath } from '../config';
 import { useDocumentTitle } from '../utils';
 import { blogPosts, formatDate, readingTime } from '../data/blogPosts';
+import NotFound from '../pages/NotFound';
 
 // Inline markdown: **bold** and [text](url), rendered as React nodes (no innerHTML)
 const renderInline = (text: string): React.ReactNode[] =>
@@ -41,41 +42,42 @@ const parseBlocks = (content: string): Block[] => {
 const BlogPostTemplate: React.FC = () => {
   const { id } = useParams();
   const post = blogPosts.find((p) => String(p.id) === id);
-  useDocumentTitle(post?.title ?? 'Post not found');
+  useDocumentTitle(post?.title ?? 'Page not found');
+
+  if (!post) return <NotFound />;
 
   return (
     <div className="blog-post-page">
       <Header />
       <article className="blog-post-container">
         <Link to="/blogs" className="back-link">← All posts</Link>
-        {post ? (
-          <>
-            <h1 className="blog-post-title">{post.title}</h1>
-            <p className="blog-post-date">
-              {formatDate(post.date)} · {readingTime(post.content)} min read
-            </p>
-            <div className="blog-post-image-container">
-              <img src={getAssetPath(post.image)} alt="" className="blog-post-image" />
-            </div>
-            <div className="blog-post-content">
-              {parseBlocks(post.content).map((block, i) => {
-                if ('items' in block) {
-                  const List = block.type;
-                  return (
-                    <List key={i} className="blog-list">
-                      {block.items.map((item, j) => <li key={j}>{renderInline(item)}</li>)}
-                    </List>
-                  );
-                }
-                return block.type === 'h2'
-                  ? <h2 key={i}>{block.text}</h2>
-                  : <p key={i}>{renderInline(block.text)}</p>;
-              })}
-            </div>
-          </>
-        ) : (
-          <h1 className="blog-post-title">This post doesn't exist.</h1>
-        )}
+        <h1 className="blog-post-title">{post.title}</h1>
+        <p className="blog-post-date">
+          {formatDate(post.date)} · {readingTime(post.content)} min read
+        </p>
+        <div className="blog-post-image-container">
+          <img
+            src={getAssetPath(post.image)}
+            alt=""
+            className="blog-post-image"
+            style={{ objectFit: post.imageFit, backgroundColor: post.imageBackground }}
+          />
+        </div>
+        <div className="blog-post-content">
+          {parseBlocks(post.content).map((block, i) => {
+            if ('items' in block) {
+              const List = block.type;
+              return (
+                <List key={i} className="blog-list">
+                  {block.items.map((item, j) => <li key={j}>{renderInline(item)}</li>)}
+                </List>
+              );
+            }
+            return block.type === 'h2'
+              ? <h2 key={i}>{block.text}</h2>
+              : <p key={i}>{renderInline(block.text)}</p>;
+          })}
+        </div>
       </article>
       <Footer />
     </div>

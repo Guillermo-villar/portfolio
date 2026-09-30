@@ -19,6 +19,9 @@ const Hero: React.FC = () => (
         Computer Science Engineer (UC3M) working across applied AI, data pipelines, automation and software
         quality. I like taking ambiguous problems and turning them into working products.
       </p>
+      <Link to="/projects/ai-demo/live" className="hero-callout">
+        <span className="hero-callout-tag">New</span> Draw a digit and watch my neural network read it <span aria-hidden="true">→</span>
+      </Link>
       <div className="hero-actions">
         <Link to="/projects" className="hero-button primary">See my work</Link>
         <a href={getAssetPath('CV.pdf')} target="_blank" rel="noopener noreferrer" className="hero-button">Download CV</a>

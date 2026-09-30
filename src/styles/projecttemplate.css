@@ -138,6 +138,10 @@
   color: #222;
 }
 
+.project-actions-inline {
+  display: none;
+}
+
 .project-type {
   margin: 0;
   color: #ddd;
@@ -161,5 +165,18 @@
 
   .project-sidebar {
     position: static;
+  }
+
+  .project-actions-inline {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-actions-inline .project-actions {
+    margin-bottom: 0;
+  }
+
+  .project-actions-sidebar {
+    display: none;
   }
 }

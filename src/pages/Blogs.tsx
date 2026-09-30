@@ -28,7 +28,13 @@ const BlogPage: React.FC = () => {
                 <h2>{post.title}</h2>
                 <p>{excerpt(post.content)}</p>
               </div>
-              <img src={getAssetPath(post.image)} alt="" className="blog-image" loading="lazy" />
+              <img
+                src={getAssetPath(post.image)}
+                alt=""
+                className="blog-image"
+                loading="lazy"
+                style={{ objectFit: post.imageFit, backgroundColor: post.imageBackground }}
+              />
             </div>
           </Link>
         ))}

@@ -55,6 +55,35 @@
   color: #c8c8c8;
 }
 
+.hero-callout {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.75rem;
+  padding: 0.35rem 0.9rem 0.35rem 0.4rem;
+  border: 1px solid rgba(255, 152, 0, 0.35);
+  border-radius: 999px;
+  background-color: rgba(255, 152, 0, 0.06);
+  color: #ddd;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.hero-callout:hover {
+  border-color: var(--accent);
+  background-color: rgba(255, 152, 0, 0.12);
+}
+
+.hero-callout-tag {
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: #222;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -122,6 +151,10 @@
     gap: 2rem;
     min-height: 0;
     padding: 2rem 0 3rem;
+  }
+
+  .hero-callout {
+    text-align: left;
   }
 
   .hero-actions {
