@@ -11,22 +11,30 @@ interface Project {
   link: string;
   techStack: string[];
   badge?: string;
+  still?: string;
 }
 
 const projects: Project[] = [
   { title: 'Sol Sombra', description: 'Walking routes across Madrid chosen by how much sun each stretch of pavement gets.', image: 'solsombra-og.jpg', link: '/projects/solsombra', techStack: ['TypeScript', 'Next.js', 'PostGIS'], badge: 'Live' },
-  { title: 'AI Digit Detector', description: 'A neural network that reads your handwriting. Draw a digit and try it live in the browser.', image: 'AI.webp', link: '/projects/ai-demo', techStack: ['Python', 'TensorFlow'], badge: 'Live demo' },
-  { title: 'Crypto Safe Fileshare', description: 'Cryptographically robust file-sharing system with a custom certificate system.', image: 'outp.webp', link: '/projects/crypto', techStack: ['Python', 'Cryptography'] },
-  { title: 'NGO Crypto Funding', description: "A Web3 answer to NGOs' lack of accountability.", image: 'G3.png', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7310295376819806208/', techStack: ['Web3', 'Blockchain'] },
-  { title: 'Web Portfolio', description: 'This very website, built from scratch.', image: 'web.webp', link: '/blog/2', techStack: ['React', 'TypeScript'] },
-  { title: 'Bachelor Thesis', description: 'Machine learning on imbalanced datasets.', image: 'TFG.jpeg', link: '/bach-thesis', techStack: ['Machine Learning', 'Statistics'] },
+  { title: 'AI Digit Detector', description: 'A neural network that reads your handwriting. Draw a digit and try it live in the browser.', image: 'card-ai.webp', still: 'card-ai-still.webp', link: '/projects/ai-demo', techStack: ['Python', 'TensorFlow'], badge: 'Live demo' },
+  { title: 'Crypto Safe Fileshare', description: 'Cryptographically robust file-sharing system with a custom certificate system.', image: 'card-crypto.webp', link: '/projects/crypto', techStack: ['Python', 'Cryptography'] },
+  { title: 'NGO Crypto Funding', description: "A Web3 answer to NGOs' lack of accountability.", image: 'card-ngo.webp', still: 'card-ngo-still.webp', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7310295376819806208/', techStack: ['Web3', 'Blockchain'] },
+  { title: 'Web Portfolio', description: 'This very website, built from scratch.', image: 'card-web.webp', still: 'card-web-still.webp', link: '/blog/2', techStack: ['React', 'TypeScript'] },
+  { title: 'Bachelor Thesis', description: 'Machine learning on imbalanced datasets.', image: 'card-thesis.webp', link: '/bach-thesis', techStack: ['Machine Learning', 'Statistics'] },
 ];
 
-const ProjectCard: React.FC<Project> = ({ title, description, image, link, techStack, badge }) => {
+const ProjectCard: React.FC<Project> = ({ title, description, image, still, link, techStack, badge }) => {
   const content = (
     <>
       <div className="project-media">
-        <img src={getAssetPath(image)} alt="" className="project-image" loading="lazy" />
+        {still ? (
+          <picture>
+            <source media="(prefers-reduced-motion: reduce)" srcSet={getAssetPath(still)} />
+            <img src={getAssetPath(image)} alt="" className="project-image" loading="lazy" />
+          </picture>
+        ) : (
+          <img src={getAssetPath(image)} alt="" className="project-image" loading="lazy" />
+        )}
       </div>
       <div className="project-info">
         <h3>

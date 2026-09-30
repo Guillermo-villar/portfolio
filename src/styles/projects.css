@@ -58,6 +58,10 @@
   background-color: #1b1b1b;
 }
 
+.project-media picture {
+  display: contents;
+}
+
 .project-image {
   display: block;
   width: 100%;
