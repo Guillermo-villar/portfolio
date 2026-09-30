@@ -15,3 +15,12 @@ CRA + React 18 + TypeScript, HashRouter, deployed from `build/` (not tracked).
 - Project detail pages pass `paragraphs` and `stack` arrays to `ProjectsTemplate`; cards are defined in `components/Projects.tsx`.
 - Per-page tab titles via `useDocumentTitle()` from `src/utils.ts`.
 - Jest needs the `moduleNameMapper` in package.json and the TextEncoder polyfill in `src/setupTests.ts` for react-router v7.
+- Live digit demo: `/projects/ai-demo/live` (`src/pages/DigitDemo.tsx`, lazy-loaded), inference in `src/demo/`, weights in `public/models/mnist-mlp.bin`. jsdom tests must stub `HTMLCanvasElement.prototype.getContext` and `fetch`.
+- Unknown routes and unknown blog ids render `pages/NotFound.tsx`.
+- `public/index.html` carries a meta CSP: no inline scripts, and any new third-party origin must be added there.
+
+## Deploy
+Production is GitHub Pages from the `gh-pages` branch, domain `www.g-villar.tech` (apex 301s to www, behind Cloudflare).
+1. `npm run build` on `master`.
+2. `git worktree add ../portfolio-ghpages gh-pages`, replace its contents with `build/*` (keep `.git`), commit `deploy: ...`, `git push origin gh-pages`, then `git worktree remove ../portfolio-ghpages`.
+3. `build/CNAME` must be `www.g-villar.tech`.
