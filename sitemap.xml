@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Hash routes are not separately indexable, so this lists the one document the
+  crawler can actually fetch. It exists mainly so /sitemap.xml and /robots.txt
+  stop returning 404.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.g-villar.tech/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
