@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/projects.css';
 import { getAssetPath } from '../config';
-import { isExternalLink, techClass } from '../utils';
+import { isAppRoute, isExternalLink, techClass } from '../utils';
 
 interface Project {
   title: string;
@@ -19,7 +19,7 @@ const projects: Project[] = [
   { title: 'Crypto Safe Fileshare', description: 'Cryptographically robust file-sharing system with a custom certificate system.', image: 'outp.webp', link: '/projects/crypto', techStack: ['Python', 'Cryptography'] },
   { title: 'NGO Crypto Funding', description: "A Web3 answer to NGOs' lack of accountability.", image: 'G3.png', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7310295376819806208/', techStack: ['Web3', 'Blockchain'] },
   { title: 'Web Portfolio', description: 'This very website, built from scratch.', image: 'web.webp', link: '/blog/2', techStack: ['React', 'TypeScript'] },
-  { title: 'Bachelor Thesis', description: 'Machine learning on imbalanced datasets.', image: 'TFG.jpeg', link: 'https://github.com/Guillermo-villar/TFG', techStack: ['Machine Learning', 'Statistics'] },
+  { title: 'Bachelor Thesis', description: 'Machine learning on imbalanced datasets.', image: 'TFG.jpeg', link: '/bach-thesis', techStack: ['Machine Learning', 'Statistics'] },
 ];
 
 const ProjectCard: React.FC<Project> = ({ title, description, image, link, techStack, badge }) => {
@@ -51,10 +51,14 @@ const ProjectCard: React.FC<Project> = ({ title, description, image, link, techS
     <a href={link} className="project-card" target="_blank" rel="noopener noreferrer" aria-label={title}>
       {content}
     </a>
-  ) : (
+  ) : isAppRoute(link) ? (
     <Link to={link} className="project-card" aria-label={title}>
       {content}
     </Link>
+  ) : (
+    <a href={link} className="project-card" aria-label={title}>
+      {content}
+    </a>
   );
 };
 

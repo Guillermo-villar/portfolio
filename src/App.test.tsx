@@ -45,3 +45,9 @@ test.each(['#/this-does-not-exist', '#/blog/99'])('%s shows the 404 page', (hash
   render(<App />);
   expect(screen.getByRole('heading', { level: 1, name: /This page doesn't exist/i })).toBeInTheDocument();
 });
+
+test('Bachelor Thesis card links to the static thesis page, not a hash route', () => {
+  window.location.hash = '#/projects';
+  render(<App />);
+  expect(screen.getByRole('link', { name: 'Bachelor Thesis' }).getAttribute('href')).toBe('/bach-thesis');
+});

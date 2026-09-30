@@ -6,6 +6,8 @@ export const techClass = (name: string): string =>
 
 export const isExternalLink = (link: string): boolean => /^https?:\/\//.test(link);
 
+export const isAppRoute = (link: string): boolean => /^\/(projects|blogs?|about)?(\/|$)/.test(link);
+
 const SITE_NAME = 'Guillermo Villar Sánchez';
 
 export const useDocumentTitle = (title?: string) => {
