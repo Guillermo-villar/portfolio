@@ -47,17 +47,6 @@ const Header: React.FC = () => {
                 </NavLink>
               </li>
             ))}
-            <li>
-              <a
-                href={getAssetPath('CV.pdf')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-external"
-                aria-label="CV (PDF, opens in a new tab)"
-              >
-                CV <FiArrowUpRight aria-hidden="true" />
-              </a>
-            </li>
           </ul>
         </nav>
 
@@ -75,6 +64,18 @@ const Header: React.FC = () => {
           <li>
             <a href="mailto:guillermovillarsanchez@gmail.com" aria-label="Email">
               <FaEnvelope />
+            </a>
+          </li>
+          <li className="social-divider" aria-hidden="true" />
+          <li>
+            <a
+              href={getAssetPath('CV.pdf')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-cv"
+              aria-label="CV (PDF, opens in a new tab)"
+            >
+              CV <FiArrowUpRight aria-hidden="true" />
             </a>
           </li>
         </ul>
