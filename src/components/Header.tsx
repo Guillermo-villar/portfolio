@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import { FiArrowUpRight } from 'react-icons/fi';
 import '../styles/header.css';
 import { getAssetPath } from '../config';
 
@@ -46,6 +47,17 @@ const Header: React.FC = () => {
                 </NavLink>
               </li>
             ))}
+            <li>
+              <a
+                href={getAssetPath('CV.pdf')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-external"
+                aria-label="CV (PDF, opens in a new tab)"
+              >
+                CV <FiArrowUpRight aria-hidden="true" />
+              </a>
+            </li>
           </ul>
         </nav>
 
@@ -63,11 +75,6 @@ const Header: React.FC = () => {
           <li>
             <a href="mailto:guillermovillarsanchez@gmail.com" aria-label="Email">
               <FaEnvelope />
-            </a>
-          </li>
-          <li>
-            <a href={getAssetPath('CV.pdf')} target="_blank" rel="noopener noreferrer" className="cv-link">
-              CV
             </a>
           </li>
         </ul>
