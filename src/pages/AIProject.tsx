@@ -1,25 +1,22 @@
 import React from 'react';
-import Header from '../components/Header';
 import ProjectsTemplate from '../components/ProjectsTemplate';
-import Footer from '../components/Footer';
 
-const AIProject: React.FC = () => {
-  const projectData = {
-    title: "AI Digit Detector",
-    image: "AI-anim.webp",
-    description: "This machine learning project uses Python and TensorFlow to accurately recognize handwritten digits. The system is trained on the MNIST dataset and achieves over 97% accuracy using a convolutional neural network architecture. The implementation includes data preprocessing, model training, and a simple interface for testing new handwritten inputs. The complete source code, documentation, and training methodology can be found on GitHub. A web-based interactive demo is coming soon, featuring real-time digit recognition with engaging animations that visualize the neural network's decision-making process.",
-    githubLink: "https://github.com/Guillermo-villar/AI-project",
-    type: "Personal",
-    isDemo: true,
-    projStack: "Python, TensorFlow, NumPy, Matplotlib"
-  };
-  return (
-    <div className="home">
-      <Header /> 
-      <ProjectsTemplate {...projectData} />
-      <Footer />
-    </div>
-  );
-};
+const AIProject: React.FC = () => (
+  <ProjectsTemplate
+    title="AI Digit Detector"
+    tagline="Handwritten digit recognition, running live in your browser"
+    image="AI-anim.webp"
+    paragraphs={[
+      "A neural network that recognises handwritten digits, built in Python with TensorFlow and trained on the MNIST dataset. It is a compact 784 → 128 → 64 → 10 dense network that reaches 97.3% accuracy on the 10,000-image MNIST test set.",
+      "The project covers the full pipeline: preprocessing and binarising the input, training, and a Tkinter interface for drawing digits and testing them. The source code, documentation and training methodology are on GitHub.",
+      "The trained weights also run right here in the browser. The live demo loads them as 108 KB of quantised int8 and evaluates the network in plain TypeScript, reproducing MNIST's own normalisation so your drawing looks like the data the model learned from. Nothing you draw leaves your device.",
+    ]}
+    githubLink="https://github.com/Guillermo-villar/AI-project"
+    liveLink="/projects/ai-demo/live"
+    liveLabel="Try the live demo"
+    type="Personal"
+    stack={['Python', 'TensorFlow', 'NumPy', 'Matplotlib']}
+  />
+);
 
 export default AIProject;

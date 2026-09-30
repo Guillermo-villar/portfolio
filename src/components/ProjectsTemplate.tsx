@@ -1,113 +1,79 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaExternalLinkAlt, FaGithub, FaPlay } from 'react-icons/fa';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../styles/projecttemplate.css';
 import { getAssetPath } from '../config';
+import { isExternalLink, techClass, useDocumentTitle } from '../utils';
 
 interface ProjectData {
   title: string;
+  tagline: string;
   image: string;
-  description: string;
+  paragraphs: string[];
   // Both links are optional: a project can be closed-source, have no public
   // deployment to visit, or neither.
   githubLink?: string;
   liveLink?: string;
   liveLabel?: string;
   type: string;
-  isDemo: boolean;
-  projStack: string;
+  stack: string[];
 }
 
-const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, githubLink, liveLink, liveLabel, type, projStack }) => {
-  // Split the description into two paragraphs
-  const paragraphs = description.split('. ');
-  const midpoint = Math.ceil(paragraphs.length / 2);
-  
-  const firstParagraph = paragraphs.slice(0, midpoint).join('. ') + '.';
-  const secondParagraph = paragraphs.slice(midpoint).join('. ');
+const ProjectTemplate: React.FC<ProjectData> = ({ title, tagline, image, paragraphs, githubLink, liveLink, liveLabel, type, stack }) => {
+  useDocumentTitle(title);
 
-  // Assign skill levels based on tech names (simulating the skills component behavior)
-  const getSkillLevel = (tech: string): number => {
-    // This could be enhanced with real skill data if available
-    const skillLevels: {[key: string]: number} = {
-      'Python': 5,
-      'Tensorflow': 3,
-      'Cryptography': 4,
-      'Web': 4,
-      'React': 3,
-      'Javascript': 4,
-      'Web3': 3,
-      'Blockchain': 3,
-      'Machine-Learning': 5,
-      'Statistics': 4,
-      'Next.js': 4,
-      'TypeScript': 4,
-      'PostgreSQL': 4,
-      'PostGIS': 3,
-      'GraphHopper': 3,
-      'MapLibre': 4,
-      'Docker': 4
-    };
-    
-    return skillLevels[tech] || 3; // Default level 3 if not specified
-  };
+  const actions = (liveLink || githubLink) && (
+    <div className="project-actions">
+      {liveLink && (isExternalLink(liveLink) ? (
+        <a href={liveLink} target="_blank" rel="noopener noreferrer" className="project-action">
+          <FaExternalLinkAlt aria-hidden="true" /> {liveLabel || 'Visit the site'}
+        </a>
+      ) : (
+        <Link to={liveLink} className="project-action">
+          <FaPlay aria-hidden="true" /> {liveLabel || 'Open'}
+        </Link>
+      ))}
+      {githubLink && (
+        <a href={githubLink} target="_blank" rel="noopener noreferrer" className="project-action secondary">
+          <FaGithub aria-hidden="true" /> View on GitHub
+        </a>
+      )}
+    </div>
+  );
 
   return (
     <div className="project-page">
       <Header />
-      
-      {/* Main content container */}
-      <div className="project-wrapper">
-        {/* Tech stack section - similar to skills section */}
-        <div className="tech-stack-section">
-          <div className="skills-category">
-            <h3>Technologies Used</h3>
-            <div className="skills-list">
-              {projStack.split(', ').map((tech, index) => (
-                <div key={index} className="skill-bullet">
-                  <div className={`circle ${tech.toLowerCase()}`}></div>
-                  <span className="skill-name">{tech}</span>
-                  <div className="skill-level">
-                    {[...Array(5)].map((_, i) => (
-                      <span 
-                        key={i} 
-                        className={`level-dot ${i < getSkillLevel(tech) ? 'filled' : ''}`}
-                      ></span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Main content container */}
-        <div className="project-content">
+      <main className="project-wrapper">
+        <article className="project-content">
+          <Link to="/projects" className="back-link">← All projects</Link>
           <h1>{title}</h1>
-          
-          <div className="image-container">
-            <img src={getAssetPath(image)} alt={title} className="project-image" />
-          </div>
-          
-          <div className="project-description-container">
-            <p className="project-description">{firstParagraph}</p>
-            <p className="project-description">{secondParagraph}</p>
-            
-            <div className="project-details">
-              {liveLink && (
-                <a href={liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                  {liveLabel || 'Visit the site'}
-                </a>
-              )}
-              {githubLink && (
-                <a href={githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                  View on GitHub
-                </a>
-              )}
-              <p className="project-type">Type: {type}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+          <p className="project-tagline">{tagline}</p>
+          {actions && <div className="project-actions-inline">{actions}</div>}
+          <img src={getAssetPath(image)} alt={`${title} screenshot`} className="project-hero-image" />
+          {paragraphs.map((p, i) => (
+            <p key={i} className="project-description">{p}</p>
+          ))}
+        </article>
+
+        <aside className="project-sidebar">
+          {actions && <div className="project-actions-sidebar">{actions}</div>}
+          <h3>Tech stack</h3>
+          <ul className="project-stack">
+            {stack.map((tech) => (
+              <li key={tech}>
+                <span className={`circle ${techClass(tech)}`}></span>
+                {tech}
+              </li>
+            ))}
+          </ul>
+          <h3>Type</h3>
+          <p className="project-type">{type}</p>
+        </aside>
+      </main>
+      <Footer />
     </div>
   );
 };

@@ -1,78 +1,174 @@
 .hero {
-  text-align: center;
-  color: white;
-  padding: 1rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 5.5rem 0 5rem;
 }
 
-.hero-image {
-  height: 180px;
-  width: 180px;
+.hero-text {
+  flex: 1;
+  max-width: 660px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.04);
+  font-size: 0.82rem;
+  color: #ddd;
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  margin-bottom: 1.5rem;
-  object-fit: cover;
-  object-position: 60% 10%;
-  border: 4px solid #ff9800;
-  box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
-  transition: transform 0.3s ease;
-}
-
-.hero-image:hover {
-  transform: scale(1.02);
+  background-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.25);
 }
 
 .hero h1 {
-  margin: 0.5rem 0;
-  font-size: 1.8rem;
+  margin: 0 0 1.25rem;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
 }
 
-.hero-name span {
-  display: none !important;
+.hero h1 span {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.55em;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: var(--accent);
 }
 
-/* Large screens: Full Name */
-@media (min-width: 900px) {
-  .hero-name .name-full {
-    display: inline !important;
-  }
+.hero-lead {
+  margin: 0 0 2rem;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #c8c8c8;
 }
 
-/* Medium screens: Guillermo Villar */
-@media (min-width: 600px) and (max-width: 899px) {
-  .hero h1 {
-    font-size: 2.2rem !important;
-  }
-  .hero-name .name-medium {
-    display: inline !important;
-  }
+.hero-callout {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.75rem;
+  padding: 0.35rem 0.9rem 0.35rem 0.4rem;
+  border: 1px solid rgba(255, 152, 0, 0.35);
+  border-radius: 999px;
+  background-color: rgba(255, 152, 0, 0.06);
+  color: #ddd;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s;
 }
 
-/* Small screens: Guillermo */
-@media (min-width: 400px) and (max-width: 599px) {
-  .hero h1 {
-    font-size: 1.8rem !important;
-  }
-  .hero-name .name-small {
-    display: inline !important;
-  }
+.hero-callout:hover {
+  border-color: var(--accent);
+  background-color: rgba(255, 152, 0, 0.12);
 }
 
-/* Very small screens: GVS */
-@media (max-width: 399px) {
-  .hero h1 {
-    font-size: 1.5rem !important;
-  }
-  .hero-name .name-initials {
-    display: inline !important;
-  }
+.hero-callout-tag {
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: #222;
+  font-size: 0.75rem;
+  font-weight: bold;
 }
 
-.hero p {
-  margin: 0.5rem 0;
-  font-size: 1rem;
-  opacity: 0.9;
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.hero-button {
+  padding: 0.7rem 1.3rem;
+  border-radius: 8px;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.hero-button.primary,
+.hero-button:hover {
+  background-color: var(--accent);
+  color: #222;
+}
+
+.hero-button.primary:hover {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.hero-social {
+  display: flex;
+  gap: 1rem;
+  margin-left: 0.75rem;
+}
+
+.hero-social a {
+  display: flex;
+  color: #bbb;
+  font-size: 1.35rem;
+  transition: color 0.2s;
+}
+
+.hero-social a:hover {
+  color: var(--accent);
+}
+
+.hero-photo {
+  flex-shrink: 0;
+}
+
+.hero-photo img {
+  display: block;
+  width: clamp(200px, 24vw, 320px);
+  height: clamp(200px, 24vw, 320px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 60% 10%;
+  border: 4px solid var(--accent);
+}
+
+@media (max-width: 860px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 2rem;
+    min-height: 0;
+    padding: 2rem 0 3rem;
+  }
+
+  .hero-callout {
+    text-align: left;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-social {
+    width: 100%;
+    justify-content: center;
+    margin: 0.5rem 0 0;
+  }
+
+  .hero-photo img {
+    width: 180px;
+    height: 180px;
+  }
 }
