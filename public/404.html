@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Guillermo Villar</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #111;
+        color: #ccc;
+        font-family: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        text-align: center;
+        padding: 1rem;
+      }
+      a { color: #ff9800; }
+    </style>
+    <script>
+      /*
+       * GitHub Pages serves this file for any path it does not have, which is
+       * every clean URL on a hash-routed SPA: https://g-villar.tech/projects
+       * used to be a plain 404. Translate the path into the hash route the app
+       * understands and hand it back to index.html.
+       *
+       * replace() rather than assign() so the broken URL does not end up in the
+       * visitor's history, and a relative redirect so this keeps working on a
+       * project-pages URL or a preview deploy.
+       */
+      (function () {
+        var path = window.location.pathname.replace(/^\/+/, '');
+        var route = path ? '/' + path.replace(/\/+$/, '') : '/';
+        window.location.replace('/#' + route + window.location.search);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>
+      Taking you to <a href="/">g-villar.tech</a>&hellip;
+    </p>
+  </body>
+</html>

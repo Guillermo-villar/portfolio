@@ -1,0 +1,77 @@
+.notfound-page {
+  background-color: rgba(48, 48, 48, 0.897);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.notfound-container {
+  flex: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 8rem 1.5rem 4rem;
+  text-align: center;
+}
+
+.notfound-code {
+  margin: 0;
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #ff9800;
+}
+
+.notfound-container h1 {
+  margin: 0.5rem 0 1rem;
+  font-size: 1.6rem;
+}
+
+.notfound-text {
+  margin: 0 auto 2rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.notfound-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.notfound-link {
+  padding: 0.6rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.notfound-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.notfound-link.primary {
+  background-color: #ff9800;
+  border-color: #ff9800;
+  color: #111;
+}
+
+.notfound-link.primary:hover {
+  background-color: #e68900;
+  border-color: #e68900;
+}
+
+@media (max-width: 768px) {
+  .notfound-container {
+    padding-top: 6rem;
+  }
+
+  .notfound-code {
+    font-size: 3.5rem;
+  }
+}
