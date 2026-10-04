@@ -6,15 +6,15 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>&copy; {new Date().getFullYear()} Guillermo Villar Sánchez</p>
+        <p>&copy; 2025 Guillermo Villar Sánchez. All rights reserved.</p>
         <div className="footer-links">
-          <a href="https://github.com/Guillermo-villar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <a href="https://github.com/Guillermo-villar" target="_blank" rel="noopener noreferrer">
             <FaGithub />
           </a>
-          <a href="https://www.linkedin.com/in/guillermo-villar-sanchez/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/guillermo-villar-sanchez/" target="_blank" rel="noopener noreferrer">
             <FaLinkedin />
           </a>
-          <a href="mailto:guillermovillarsanchez@gmail.com" aria-label="Email">
+          <a href="mailto:guillermovillarsanchez@gmail.com">
             <FaEnvelope />
           </a>
         </div>

@@ -1,60 +1,109 @@
-.skills-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr 1fr;
-  gap: 1.25rem;
+.skills-section {
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.skills-section h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #ff9800;
+}
+
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .skills-category {
-  padding: 1.25rem;
-  border-radius: 14px;
-  background-color: var(--surface);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: left;
 }
 
 .skills-category h3 {
-  margin: 0 0 1rem;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #999;
+  margin: 0 0 0.8rem 0;
+  font-size: 1.2rem;
+  color: #ff9800;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
 }
 
 .skills-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .skill-bullet {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  padding: 0.4em 0.9em;
-  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 0.9em;
+  font-weight: 500;
+  padding: 0.5em 1em;
+  border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: rgba(0, 0, 0, 0.25);
-  font-size: 0.85rem;
-  white-space: nowrap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: fit-content;
+  margin-bottom: 0.5rem;
+}
+
+.skill-bullet:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .skill-bullet .circle {
-  flex-shrink: 0;
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   margin-right: 0.5em;
 }
 
-.skill-note {
-  margin-left: 0.45em;
-  color: #999;
-  font-size: 0.9em;
+.skill-name {
+  margin-right: 0.8rem;
 }
 
-@media (max-width: 860px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
+.skill-level {
+  display: flex;
+  gap: 3px;
+}
+
+.level-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.level-dot.filled {
+  background-color: #ff9800;
+}
+
+/* Circle colors for different skills - using the same colors as your projects */
+.circle.python { background-color: #306998; }
+.circle.jscript { background-color: #F0DB4F; }
+.circle.typescript { background-color: #3178C6; }
+.circle.java { background-color: #007396; }
+.circle.react { background-color: #61DBFB; }
+.circle.tensorflow { background-color: #FF6F00; }
+.circle.node\.js { background-color: #68A063; }
+.circle.git { background-color: #F05032; }
+.circle.docker { background-color: #2496ED; }
+.circle.aws { background-color: #FF9900; }
+.circle.cryptography { background-color: #e625ec; }
+.circle.machine.learning { background-color: #01A9DB; }
+.circle.c { background-color: #bd1e1e; }
+.circle.langchain { background-color: #12ce2b; }
+.circle.sckit { background-color: #f7c02d; }
+.circle.pytorch { background-color: #0e2cb6; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skills-list {
+    justify-content: center;
   }
 }

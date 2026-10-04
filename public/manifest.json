@@ -1,29 +1,25 @@
 {
   "short_name": "GV Portfolio",
   "name": "Guillermo Villar Portfolio",
-  "description": "Portfolio of Guillermo Villar Sánchez — machine learning, cryptography and web projects.",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "G3.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "icon-192.png",
+      "src": "G3.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any"
+      "sizes": "192x192"
     },
     {
-      "src": "icon-512.png",
+      "src": "G3.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any"
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
-  "scope": ".",
   "display": "standalone",
-  "theme_color": "#2c2c2c",
-  "background_color": "#2c2c2c"
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }

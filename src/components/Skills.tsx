@@ -1,66 +1,75 @@
 import React from 'react';
 import '../styles/skills.css';
-import { techClass } from '../utils';
 
-interface Skill {
+interface SkillProps {
   name: string;
-  level: number; // 1-5 scale, used for ordering
-  note?: string;
+  level: number; // 1-5 scale
+  category: string;
 }
 
-const skillGroups: { title: string; skills: Skill[] }[] = [
-  {
-    title: 'Programming',
-    skills: [
-      { name: 'Python', level: 5 },
-      { name: 'TypeScript', level: 4 },
-      { name: 'Java', level: 3 },
-      { name: 'SQL', level: 4 },
-      { name: 'C', level: 4 },
-    ],
-  },
-  {
-    title: 'Frameworks & Tools',
-    skills: [
-      { name: 'PyTorch', level: 4 },
-      { name: 'LangChain', level: 4 },
-      { name: 'TensorFlow', level: 3 },
-      { name: 'scikit-learn', level: 3 },
-      { name: 'React', level: 3 },
-      { name: 'Next.js', level: 3 },
-      { name: 'PostgreSQL', level: 4 },
-      { name: 'Selenium', level: 3 },
-      { name: 'Docker', level: 3 },
-      { name: 'Git', level: 4 },
-    ],
-  },
-  {
-    title: 'Languages',
-    skills: [
-      { name: 'Spanish', level: 5, note: 'Native' },
-      { name: 'English', level: 5, note: 'C2' },
-      { name: 'French', level: 2, note: 'Basic' },
-    ],
-  },
-];
+const Skills: React.FC = () => {
+  const skills: SkillProps[] = [
+    // Programming Languages
+    { name: 'Python', level: 5, category: 'language' },
+    { name: 'C', level: 4, category: 'language' },
+    { name: 'JScript', level: 4, category: 'language' },
+    { name: 'React', level: 3, category: 'language' },
+    
+    // Frameworks
+    { name: 'Git', level: 4, category: 'framework' },
+    { name: 'TensorFlow', level: 3, category: 'framework' },
+    { name: 'Sckit', level: 3, category: 'framework' },
+    { name: 'Langchain', level: 4, category: 'framework' }, 
+    { name: 'Pytorch', level: 4, category: 'framework' }, 
+  ];
 
-const Skills: React.FC = () => (
-  <div className="skills-grid">
-    {skillGroups.map(({ title, skills }) => (
-      <div key={title} className="skills-category">
-        <h3>{title}</h3>
-        <ul className="skills-list">
-          {[...skills].sort((a, b) => b.level - a.level).map((skill) => (
-            <li key={skill.name} className="skill-bullet">
-              <span className={`circle ${techClass(skill.name)}`}></span>
-              {skill.name}
-              {skill.note && <span className="skill-note">{skill.note}</span>}
-            </li>
-          ))}
-        </ul>
+  // Group skills by category
+  const groupedSkills: Record<string, SkillProps[]> = skills.reduce((acc, skill) => {
+    if (!acc[skill.category]) {
+      acc[skill.category] = [];
+    }
+    acc[skill.category].push(skill);
+    return acc;
+  }, {} as Record<string, SkillProps[]>);
+
+  // Map category names to display names
+  const categoryNames: Record<string, string> = {
+    language: 'Languages',
+    framework: 'Frameworks & Libraries'
+    // Removed tool category
+  };
+
+  return (
+    <section className="skills-section">
+      <h2>Skills</h2>
+      <div className="skills-container">
+        {Object.entries(groupedSkills).map(([category, categorySkills]) => (
+          // Skip the tool category
+          categoryNames[category] ? (
+            <div key={category} className="skills-category">
+              <h3>{categoryNames[category]}</h3>
+              <div className="skills-list">
+                {categorySkills.map((skill, index) => (
+                  <div key={index} className="skill-bullet">
+                    <div className={`circle ${skill.name.toLowerCase()}`}></div>
+                    <span className="skill-name">{skill.name}</span>
+                    <div className="skill-level">
+                      {[...Array(5)].map((_, i) => (
+                        <span 
+                          key={i} 
+                          className={`level-dot ${i < skill.level ? 'filled' : ''}`}
+                        ></span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null
+        ))}
       </div>
-    ))}
-  </div>
-);
+    </section>
+  );
+};
 
 export default Skills;
