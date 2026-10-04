@@ -407,8 +407,7 @@ const DigitDemo: React.FC = () => {
           <p>
             784 &rarr; 128 &rarr; 64 &rarr; 10 dense network, 97.3% accuracy on the 10,000-image
             MNIST test set. The weights are 108&nbsp;KB of int8, loaded on demand and evaluated in
-            plain TypeScript &mdash; no machine-learning library in the bundle. The input is shown centred; the model
-            receives it centred by mass, as MNIST was.
+            plain TypeScript &mdash; no machine-learning library in the bundle.
           </p>
         </footer>
       </main>
