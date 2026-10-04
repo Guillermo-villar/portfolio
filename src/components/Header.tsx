@@ -185,8 +185,8 @@ const Header: React.FC = () => {
               </li>
               <li>
                 <a href={getAssetPath('CV.pdf')} target="_blank" rel="noopener noreferrer" aria-label="CV (PDF)" title="CV">
-                    <FaFileAlt />
-                  </a>
+                  <FaFileAlt />
+                </a>
               </li>
               <li>
                 <a href="mailto:guillermovillarsanchez@gmail.com">

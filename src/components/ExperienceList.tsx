@@ -20,7 +20,6 @@ const Experience: React.FC<ExperienceProps> = ({ logo, company, startDate, descr
         className="experience-logo"
         onError={(e) => {
           if (!imgError) {
-            console.log(`Failed to load experience logo: ${logo}`);
             // Try fallback direct path
             e.currentTarget.src = `${process.env.PUBLIC_URL}/${logo}`;
             setImgError(true);
@@ -53,7 +52,7 @@ const ExperienceList: React.FC = () => {
     },
     {
       logo: 'sfsu.jpg',
-      company: 'Computer Egineering Assistant',
+      company: 'Computer Engineering Assistant',
       startDate: 'January 2024 - June 2024',
       description: [
         'Design coursework and projects for students',
