@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import '../styles/projecttemplate.css';
 import { getAssetPath } from '../config';
@@ -93,11 +94,15 @@ const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, git
             <p className="project-description">{secondParagraph}</p>
             
             <div className="project-details">
-              {liveLink && (
+              {liveLink && (liveLink.startsWith('/') ? (
+                <Link to={liveLink} className="project-link">
+                  {liveLabel || 'Open'}
+                </Link>
+              ) : (
                 <a href={liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
                   {liveLabel || 'Visit the site'}
                 </a>
-              )}
+              ))}
               {githubLink && (
                 <a href={githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
                   View on GitHub

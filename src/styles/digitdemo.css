@@ -1,0 +1,195 @@
+.digit-demo-page {
+  --accent: #ff9800;
+  --accent-dark: #e68900;
+  --surface: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.digit-demo-page *,
+.digit-demo-page *::before,
+.digit-demo-page *::after {
+  box-sizing: border-box;
+}
+
+.digit-demo-page .back-link {
+  display: inline-block;
+  color: #bbb;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.digit-demo-page .back-link:hover {
+  color: var(--accent);
+}
+
+.digit-demo {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5rem 1rem 3rem;
+  box-sizing: border-box;
+}
+
+.digit-demo-intro h1 {
+  margin: 0.75rem 0 0.75rem;
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+
+.digit-demo-intro p {
+  margin: 0 0 2rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.digit-demo-intro a {
+  color: var(--accent);
+}
+
+.digit-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #141414;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+}
+
+.network-stage {
+  width: 100%;
+}
+
+.network-stage-inner {
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.network-stage-canvas {
+  display: block;
+  max-width: 100%;
+  image-rendering: pixelated;
+}
+
+.pad-hit {
+  position: absolute;
+  cursor: crosshair;
+  /* Stop the browser panning or scrolling the page while drawing on touch. */
+  touch-action: none;
+}
+
+.digit-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.4rem;
+}
+
+.digit-stage.horizontal .digit-buttons {
+  justify-content: flex-start;
+  padding-left: 16px;
+}
+
+.digit-stage.vertical .digit-buttons {
+  justify-content: center;
+}
+
+.digit-clear,
+.digit-secondary {
+  padding: 0.5rem 0.85rem;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.digit-clear {
+  border: 2px solid var(--accent);
+  background-color: var(--accent);
+  color: #111;
+}
+
+.digit-clear:hover {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.digit-secondary {
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background-color: transparent;
+  color: #fff;
+}
+
+.digit-secondary:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.digit-secondary:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.digit-status {
+  margin: 0;
+  color: #ccc;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.digit-status.error {
+  color: #ff8a80;
+}
+
+.digit-flow {
+  margin: 1rem 0 0.25rem;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.digit-flow .active {
+  color: var(--accent);
+}
+
+.digit-footnote {
+  margin: 0;
+  text-align: center;
+  color: #888;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.digit-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.digit-demo-notes {
+  margin-top: 1.5rem;
+}
+
+.digit-demo-notes p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #999;
+}
+
+@media (max-width: 600px) {
+  .digit-buttons {
+    flex-wrap: wrap;
+  }
+}

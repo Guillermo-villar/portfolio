@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -13,6 +13,8 @@ import BlogPost3 from './pages/BlogPost3';
 import About from './pages/About';
 import PageViewTracker from './components/PageViewTracker';
 
+const DigitDemo = React.lazy(() => import('./pages/DigitDemo'));
+
 function App() {
   // Use basename with HashRouter to ensure all routes work correctly
   return (
@@ -22,6 +24,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/ai-demo" element={<AIDemo />} />
+        <Route
+          path="/projects/ai-demo/live"
+          element={
+            <Suspense fallback={null}>
+              <DigitDemo />
+            </Suspense>
+          }
+        />
         <Route path="/projects/crypto" element={<Crypto />} />
         <Route path="/projects/solsombra" element={<SolSombra />} />
         <Route path="/blogs" element={<Blogs />} />
