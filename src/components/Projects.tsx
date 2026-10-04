@@ -11,7 +11,7 @@ const Projects: React.FC<{ limit?: number, showDemo?: boolean, isHomePage?: bool
 }) => {
   const projects = [
     { id: 1, title: 'Sol Sombra', description: 'Walking routes across Madrid chosen by how much sun each stretch of pavement gets', image: 'solsombra.webp', link: '/projects/solsombra', techStack: 'Next.js, PostGIS', isDemo : false},
-    { id: 2, title: 'AI Digit Detector', description: 'Demo on Machine Learning using Python & Tensorflow', image: 'AI.webp', link: '/projects/ai-demo', techStack: 'Python, Tensorflow', isDemo : true},
+    { id: 2, title: 'AI Digit Detector', description: 'Demo on Machine Learning using Python & Tensorflow', image: 'AI.webp', link: '/projects/ai-demo', demoLink: '/projects/ai-demo/live', techStack: 'Python, Tensorflow', isDemo : true},
     { id: 3, title: 'Crypto Safe Fileshare', description: 'Cryptographically robust Filesharing system, with custom Certificate system', image: 'outp.webp', link: '/projects/crypto', techStack: 'Python, Cryptography' , isDemo : false},
     { id: 4, title: 'NGO Crypto Funding', description: 'A Web3 solution to NGO´s lack of accountability', image: 'G3.png', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7310295376819806208/', techStack: 'Web3, Blockchain', isDemo : false},
     { id: 5, title: 'Web Portfolio', description: 'This very Website!!', image: 'web.webp', link: '/blog/2', techStack: 'Web, React, Javascript', isDemo : false},
@@ -45,10 +45,10 @@ const Projects: React.FC<{ limit?: number, showDemo?: boolean, isHomePage?: bool
               }}
             />
             {project.isDemo && showDemo && (
-              isAppRoute(project.link) ? (
-                <Link to={project.link} className="demo-badge">Live demo</Link>
+              isAppRoute(project.demoLink ?? project.link) ? (
+                <Link to={project.demoLink ?? project.link} className="demo-badge">Live demo</Link>
               ) : (
-                <a href={project.link} className="demo-badge" target="_blank" rel="noopener noreferrer">Live demo</a>
+                <a href={project.demoLink ?? project.link} className="demo-badge" target="_blank" rel="noopener noreferrer">Live demo</a>
               )
             )}
             <div className={`project-info ${isHomePage ? 'home-page-info' : ''}`}>
