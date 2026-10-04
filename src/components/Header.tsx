@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt, FaBars, FaTimes } from 'react-icons/fa';
 import '../styles/header.css';
 import { getAssetPath } from '../config';
 
@@ -123,12 +123,12 @@ const Header: React.FC = () => {
                   </a>
                 </li>
                 <li>
-                  <a href={getAssetPath('CV.pdf')} target="_blank" rel="noopener noreferrer" className="cv-link">
-                    CV
+                  <a href={getAssetPath('CV.pdf')} target="_blank" rel="noopener noreferrer" aria-label="CV (PDF)" title="CV">
+                    <FaFileAlt />
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:guillermovillarsanchez@gmail.com" target="_blank" rel="noopener noreferrer">
+                  <a href="mailto:guillermovillarsanchez@gmail.com">
                     <FaEnvelope />
                   </a>
                 </li>
@@ -184,12 +184,12 @@ const Header: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href={getAssetPath('CV.pdf')} target="_blank" rel="noopener noreferrer" className="cv-link">
-                  CV
-                </a>
+                <a href={getAssetPath('CV.pdf')} target="_blank" rel="noopener noreferrer" aria-label="CV (PDF)" title="CV">
+                    <FaFileAlt />
+                  </a>
               </li>
               <li>
-                <a href="mailto:guillermovillarsanchez@gmail.com" target="_blank" rel="noopener noreferrer">
+                <a href="mailto:guillermovillarsanchez@gmail.com">
                   <FaEnvelope />
                 </a>
               </li>

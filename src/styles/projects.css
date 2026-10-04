@@ -369,3 +369,14 @@
 .circle.next\.js { background-color: #ffffff; }
 .circle.typescript { background-color: #3178C6; }
 .circle.postgis { background-color: #3E8E41; }
+
+/* Touch devices have no hover: the card itself is the link and the overlay never shows */
+@media (hover: none) {
+  .project-card {
+    cursor: pointer;
+  }
+
+  .project-overlay {
+    display: none;
+  }
+}
