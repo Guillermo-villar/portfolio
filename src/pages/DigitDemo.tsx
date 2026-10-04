@@ -79,7 +79,11 @@ const FLOW = [
 
 const DigitDemo: React.FC = () => {
   useEffect(() => {
+    const previous = document.title;
     document.title = 'AI Digit Detector — live demo | Guillermo Villar';
+    return () => {
+      document.title = previous;
+    };
   }, []);
   const [params] = useSearchParams();
   const noAuto = params.has('noauto');
@@ -166,6 +170,11 @@ const DigitDemo: React.FC = () => {
     cancelAnimationFrame(animation.current);
   }, []);
 
+  const cancelStroke = useCallback(() => {
+    drawing.current = false;
+    last.current = null;
+  }, []);
+
   const wipeCanvas = useCallback(() => {
     const ctx = context();
     if (!ctx) return;
@@ -177,13 +186,15 @@ const DigitDemo: React.FC = () => {
   }, []);
 
   const clear = useCallback(() => {
+    touched.current = true;
     stopTimers();
+    cancelStroke();
     wipeCanvas();
     setTrace(null);
     setInking(false);
     setPhase(-1);
     setExampleLabel(false);
-  }, [stopTimers, wipeCanvas]);
+  }, [stopTimers, cancelStroke, wipeCanvas]);
 
   useEffect(() => {
     wipeCanvas();
@@ -226,6 +237,7 @@ const DigitDemo: React.FC = () => {
   const playStrokes = useCallback(
     (strokes: Stroke[], ms: number) => {
       stopTimers();
+      cancelStroke();
       wipeCanvas();
       setTrace(null);
       setInking(false);
@@ -278,7 +290,7 @@ const DigitDemo: React.FC = () => {
       };
       animation.current = requestAnimationFrame(tick);
     },
-    [stopTimers, wipeCanvas, finalize, syncPad, stamp, stampLine]
+    [stopTimers, cancelStroke, wipeCanvas, finalize, syncPad, stamp, stampLine]
   );
 
   useEffect(() => {
