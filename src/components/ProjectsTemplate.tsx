@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import '../styles/projecttemplate.css';
 import { getAssetPath } from '../config';
+import { useDocumentTitle } from '../useDocumentTitle';
 
 interface ProjectData {
   title: string;
@@ -18,6 +19,8 @@ interface ProjectData {
 }
 
 const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, githubLink, liveLink, liveLabel, type, projStack }) => {
+  useDocumentTitle(title);
+
   // Split the description into two paragraphs
   const paragraphs = description.split('. ');
   const midpoint = Math.ceil(paragraphs.length / 2);
@@ -30,11 +33,11 @@ const ProjectTemplate: React.FC<ProjectData> = ({ title, image, description, git
     // This could be enhanced with real skill data if available
     const skillLevels: {[key: string]: number} = {
       'Python': 5,
-      'Tensorflow': 3,
+      'TensorFlow': 3,
       'Cryptography': 4,
       'Web': 4,
       'React': 3,
-      'Javascript': 4,
+      'JavaScript': 4,
       'Web3': 3,
       'Blockchain': 3,
       'Machine-Learning': 5,

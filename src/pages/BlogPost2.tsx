@@ -27,7 +27,7 @@ Configuring GitHub Pages to work properly with React Router required research an
 This portfolio is entirely open source! You can view the code, suggest improvements, or fork it for your own use at [https://github.com/Guillermo-villar/portfolio](https://github.com/Guillermo-villar/portfolio). Contributions and feedback are always welcome.
 
 Looking back, every challenge became a valuable learning opportunity. This project taught me not just coding skills, but patience, problem-solving, and the importance of community resources when tackling new technologies.`,
-    date: "April 1, 2024"
+    date: "April 1, 2025"
   };
 
   return (

@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/blogs.css';
 import { getAssetPath } from '../config';
+import { useDocumentTitle } from '../useDocumentTitle';
 
 interface BlogPost {
   id: number;
@@ -25,7 +26,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 2,
-    title: "Portfolio Website: From Concept to Launch",
+    title: "My Web Development Journey: From Zero to Portfolio",
     image: "web.webp",
     content: "Building my portfolio website has been an exciting journey of design decisions, technical challenges, and creative problem-solving. In this blog post, I share the entire process from initial sketches to final deployment. I discuss the technologies I chose (React, TypeScript, and custom CSS), the responsive design considerations that guided the UI development, and how I optimized the site for both performance and accessibility. Whether you're a fellow developer or just curious about web development, this post provides insights into creating a modern, responsive portfolio site.",
     date: "April 1, 2025",
@@ -41,7 +42,15 @@ const blogPosts: BlogPost[] = [
   }
 ];
 
+// Cut at a word boundary so the excerpt never ends mid-word
+const excerpt = (text: string, max = 150) => {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,;:.-]+$/, '')}…`;
+};
+
 const BlogPage: React.FC = () => {
+  useDocumentTitle('Blog');
   return (
     <div className="blog-page">
       <Header />
@@ -52,7 +61,7 @@ const BlogPage: React.FC = () => {
               <div className="blog-content">
                 <p className="blog-date">{post.date}</p>
                 <h2>{post.title}</h2>
-                <p>{post.content.substring(0, 150)}...</p>
+                <p>{excerpt(post.content)}</p>
               </div>
               <img src={getAssetPath(post.image)} alt={post.title} className="blog-image" />
             </div>

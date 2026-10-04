@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../components/Header';
 import ProjectsTemplate from '../components/ProjectsTemplate';
 import Footer from '../components/Footer';
 
@@ -15,7 +14,6 @@ const AIProject: React.FC = () => {
   };
   return (
     <div className="home">
-      <Header /> 
       <ProjectsTemplate {...projectData} />
       <Footer />
     </div>
