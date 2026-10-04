@@ -97,6 +97,14 @@ const lay = (
   return { dots, ellipsis, span, start };
 };
 
+export const EXAMPLE_LABEL = 'EXAMPLE · DRAW YOUR OWN';
+
+/** The label above the pad reads INPUT, or EXAMPLE · DRAW YOUR OWN while an example is shown. */
+const padNameLabel = (centreX: number, y: number): Label => {
+  const w = textWidth(EXAMPLE_LABEL, FONT_3X5);
+  return { id: 'pad-name', text: 'INPUT', kind: 'name', rect: { x: Math.round(centreX - w / 2), y, w, h: LABEL_H } };
+};
+
 const centredLabel = (id: string, text: string, kind: Label['kind'], centreX: number, y: number): Label => {
   const w = textWidth(text, FONT_3X5);
   return { id, text, kind, rect: { x: Math.round(centreX - w / 2), y, w, h: LABEL_H } };
@@ -134,7 +142,7 @@ const horizontal = (artW: number): StageLayout => {
   const labels: Label[] = [];
   const addColumn = (id: string, name: string, dim: string, r: Rect) => {
     const centre = r.x + r.w / 2;
-    labels.push(centredLabel(`${id}-name`, name, 'name', centre, r.y - LABEL_H - 4));
+    labels.push(id === 'pad' ? padNameLabel(centre, r.y - LABEL_H - 4) : centredLabel(`${id}-name`, name, 'name', centre, r.y - LABEL_H - 4));
     labels.push(centredLabel(`${id}-dim`, dim, 'dim', centre, r.y + r.h + 4));
   };
   addColumn('pad', 'INPUT', '28×28 = 784', pad);
@@ -158,7 +166,7 @@ const horizontal = (artW: number): StageLayout => {
 
 const vertical = (artW: number): StageLayout => {
   const cx = artW / 2;
-  const pad: Rect = { x: Math.round(cx - PAD_ART / 2), y: 6, w: PAD_ART, h: PAD_ART };
+  const pad: Rect = { x: Math.round(cx - PAD_ART / 2), y: TOP, w: PAD_ART, h: PAD_ART };
   const ports = Array.from({ length: GRID_SIDE }, (_, c) => ({ x: pad.x + c * GRID_PITCH + 2, y: pad.y + PAD_ART + 2 }));
 
   let y = pad.y + PAD_ART + ROW_GAP;
@@ -190,7 +198,7 @@ const vertical = (artW: number): StageLayout => {
     l2,
     out,
     box,
-    labels: [],
+    labels: [padNameLabel(cx, TOP - LABEL_H - 4)],
   };
 };
 

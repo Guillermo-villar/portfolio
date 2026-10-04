@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { MnistModel } from './mnistModel';
+import { displayOffset, shiftedCell, shiftPortStrengths } from './centring';
 import { OutputLine, Trace, Strengths, outputLines, stageStrengths, topActive } from './trace';
 import { Frame, clear, createFrame, line, plotRaw, packColor, present, rect } from './pixel';
 import { FONT_3X5, FONT_5X7, drawText, textWidth } from './pixelFont';
@@ -15,6 +16,7 @@ import {
   PAD_SCALE,
   Pt,
   StageLayout,
+  EXAMPLE_LABEL,
   computeStageLayout,
   padCssRect,
   toPadCoords,
@@ -127,12 +129,15 @@ interface Plan {
   lit: Array<{ order: number[]; top: number }>;
   portStrength: Float32Array;
   lastLines: OutputLine[];
+  offset: { dx: number; dy: number };
 }
 
 const buildPlan = (model: MnistModel, trace: Trace, orientation: Orientation): Plan => {
   const shown1 = topActive(trace.hidden1, H1_SHOWN);
   const shown2 = topActive(trace.hidden2, H2_SHOWN);
-  const s = stageStrengths(model, trace, shown1, shown2, orientation);
+  const offset = displayOffset(trace.input);
+  const raw = stageStrengths(model, trace, shown1, shown2, orientation);
+  const s = { ...raw, inH1: shiftPortStrengths(raw.inH1, shown1.length, orientation === 'horizontal' ? offset.dy : offset.dx) };
   const groups = [s.inH1, s.h1H2, s.h2Out];
   const lit = groups.map((values, pair) => {
     let order = Array.from(values.keys())
@@ -149,7 +154,7 @@ const buildPlan = (model: MnistModel, trace: Trace, orientation: Orientation): P
     portStrength[port] = Math.max(portStrength[port], s.inH1[index]);
   });
   const lastLines = outputLines(s.h2Out, trace.output, { maxLines: 6, minProb: 0.05 });
-  return { shown1, shown2, s, lit, portStrength, lastLines };
+  return { shown1, shown2, s, lit, portStrength, lastLines, offset };
 };
 
 interface Props {
@@ -167,7 +172,6 @@ interface Props {
   onPadUp?: () => void;
 }
 
-const EXAMPLE_TEXT = 'EXAMPLE · DRAW YOUR OWN';
 
 const NetworkStage: React.FC<Props> = ({
   model,
@@ -339,9 +343,10 @@ const NetworkStage: React.FC<Props> = ({
       rect(frame, L.pad.x + (i % PAD_PIXELS) * PAD_SCALE, L.pad.y + ay, PAD_SCALE, PAD_SCALE, flash ? HIGHLIGHT : '#f2f2f2');
     }
     if (tr) {
+      const off = pl ? pl.offset : displayOffset(tr.input);
       for (let r = 0; r < gridRows; r += 1) {
         for (let c = 0; c < GRID_SIDE; c += 1) {
-          const on = tr.input[r * GRID_SIDE + c] > 0;
+          const on = shiftedCell(tr.input, r, c, off.dx, off.dy) > 0;
           rect(frame, L.pad.x + c * GRID_PITCH, L.pad.y + r * GRID_PITCH, GRID_CELL, GRID_CELL, on ? '#f2f2f2' : '#1c1c1c');
         }
       }
@@ -396,18 +401,12 @@ const NetworkStage: React.FC<Props> = ({
       }
     });
 
-    if (example) {
-      const w = textWidth(EXAMPLE_TEXT, FONT_3X5);
-      const ty = L.pad.y + L.pad.h - 10;
-      rect(frame, L.pad.x + Math.round((L.pad.w - w) / 2) - 2, ty - 2, w + 4, 9, '#000000', 0.75);
-      drawText(frame, EXAMPLE_TEXT, L.pad.x + Math.round((L.pad.w - w) / 2), ty, '#cfcfcf', FONT_3X5);
-    }
-
     L.labels.forEach((label) => {
       if (label.id === 'pad-dim' && gridRows < GRID_SIDE) return;
       const { rect: r } = label;
       rect(frame, r.x - 1, r.y - 1, r.w + 2, r.h + 2, BG);
-      drawText(frame, label.text, r.x, r.y, label.kind === 'name' ? DIM_TEXT : LABEL, FONT_3X5);
+      const text = label.id === 'pad-name' && example ? EXAMPLE_LABEL : label.text;
+      drawText(frame, text, r.x + Math.round((r.w - textWidth(text, FONT_3X5)) / 2), r.y, label.kind === 'name' ? DIM_TEXT : LABEL, FONT_3X5);
     });
 
     const box = L.box;
