@@ -9,6 +9,8 @@
 
 .left-column {
   flex: 1;
+  min-width: 0;
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
 }
@@ -38,7 +40,7 @@
 
 .interests-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
@@ -62,7 +64,7 @@
 
 .interest-card h3 {
   margin: 0 0 0.75rem 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #ff9800;
 }
 
@@ -101,6 +103,7 @@
 
 .right-column {
   flex: 2;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -123,7 +126,10 @@
 
 .half-width {
   flex: 1;
+  min-width: 0;
   margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Make Experience wider than Skills */
@@ -133,6 +139,32 @@
 
 .half-width:last-child {
   flex: 1; /* Skills takes up 1/3 of the space */
+}
+
+/* The left column is narrow beside the right one: one interest per row until it is wide enough for two */
+@container (max-width: 420px) {
+  .interests-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@container (min-width: 480px) {
+  .interest-card h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Mid widths: Experience and Skills stack instead of squeezing each other */
+@media (max-width: 1400px) {
+  .dual-container {
+    flex-direction: column;
+  }
+
+  .half-width,
+  .half-width:first-child,
+  .half-width:last-child {
+    flex: none;
+  }
 }
 
 /* Responsive layout for mobile devices */
