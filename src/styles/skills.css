@@ -85,9 +85,9 @@
 
 /* Circle colors for different skills - using the same colors as your projects */
 .circle.python { background-color: #306998; }
-.circle.jscript { background-color: #F0DB4F; }
+.circle.javascript { background-color: #F0DB4F; }
 .circle.typescript { background-color: #3178C6; }
-.circle.java { background-color: #007396; }
+.circle.java { background-color: #e76f00; }
 .circle.react { background-color: #61DBFB; }
 .circle.tensorflow { background-color: #FF6F00; }
 .circle.node\.js { background-color: #68A063; }
@@ -98,7 +98,7 @@
 .circle.machine.learning { background-color: #01A9DB; }
 .circle.c { background-color: #bd1e1e; }
 .circle.langchain { background-color: #12ce2b; }
-.circle.sckit { background-color: #f7c02d; }
+.circle.scikit-learn { background-color: #f7c02d; }
 .circle.pytorch { background-color: #0e2cb6; }
 
 /* Responsive adjustments */
@@ -107,3 +107,15 @@
     justify-content: center;
   }
 }
+
+.circle.rag,
+.circle.agents,
+.circle.llm-evaluation,
+.circle.rlhf,
+.circle.retrieval-pipelines,
+.circle.prompt-testing,
+.circle.model-failure-analysis { background-color: #ff9800; }
+.circle.rest-apis { background-color: #9e9e9e; }
+.circle.postgresql { background-color: #336791; }
+.circle.selenium { background-color: #43b02a; }
+.circle.playwright { background-color: #2ead33; }

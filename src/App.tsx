@@ -11,6 +11,7 @@ import BlogPost1 from './pages/BlogPost1';
 import BlogPost2 from './pages/BlogPost2';
 import BlogPost3 from './pages/BlogPost3';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
 import PageViewTracker from './components/PageViewTracker';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/blog/2" element={<BlogPost2 />} />
         <Route path="/blog/3" element={<BlogPost3 />} />
         <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

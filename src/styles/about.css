@@ -1,7 +1,6 @@
 .about-page {
   background-color: rgba(48, 48, 48, 0.897);
   color: #fff;
-  text-align: center;
   padding-top: 60px; /* Space for header */
   min-height: 100vh;
   display: flex;
@@ -10,6 +9,7 @@
 
 .about-container {
   flex: 1;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,31 +31,46 @@
   font-size: 2rem;
 }
 
-.coming-soon-container {
-  margin: 2rem 0;
+.about-details {
+  margin: 2rem 0 0;
   padding: 2rem;
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
 }
 
-.coming-soon-icon {
-  font-size: 3rem;
-  color: #ff9800;
-  margin-bottom: 1rem;
-}
-
-.coming-soon-container h2 {
+.about-details h2 {
   font-size: 1.8rem;
   color: #ff9800;
-  margin-bottom: 1.5rem;
+  margin: 2rem 0 1rem;
 }
 
-.coming-soon-container p {
+.about-details p,
+.about-details li {
   font-size: 1.1rem;
   line-height: 1.6;
   color: #ddd;
-  margin-bottom: 1rem;
+}
+
+.about-details p {
+  margin: 0 0 1rem;
+}
+
+.about-details ul {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+
+.about-details li {
+  margin-bottom: 0.5rem;
+}
+
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 @media (max-width: 768px) {

@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import '../styles/blogs.css';
 import { getAssetPath } from '../config';
+import { useDocumentTitle } from '../useDocumentTitle';
 
 interface BlogPostProps {
   id: number;
@@ -13,103 +14,68 @@ interface BlogPostProps {
 }
 
 const BlogPostTemplate: React.FC<BlogPostProps> = ({ id, title, image, content, date }) => {
+  useDocumentTitle(title);
+  // Inline markdown: [text](url) links and **bold**
+  const inline = (line: string) =>
+    line
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
   // Function to convert markdown-style content to JSX
   const renderContent = (text: string) => {
-    // Split the content by new lines
     const lines = text.split('\n');
-    
-    return lines.map((line, index) => {
-      // Handle headings (## Heading)
-      if (line.startsWith('## ')) {
-        return <h2 key={index}>{line.substring(3)}</h2>;
-      }
-      
-      // Handle bullet points
+    const blocks: React.ReactNode[] = [];
+    let i = 0;
+
+    while (i < lines.length) {
+      const line = lines[i];
+
       if (line.startsWith('- ')) {
-        return <li key={index}>{line.substring(2)}</li>;
-      }
-      
-      // Handle numbered lists
-      if (/^\d+\.\s/.test(line)) {
-        const content = line.replace(/^\d+\.\s/, '');
-        return <li key={index}>{content}</li>;
-      }
-      
-      // Handle markdown links [text](url)
-      let processedLine = line;
-      const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-      if (linkRegex.test(line)) {
-        const linkMatches = Array.from(line.matchAll(linkRegex));
-        if (linkMatches.length > 0) {
-          processedLine = line.replace(linkRegex, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-          return <p key={index} dangerouslySetInnerHTML={{ __html: processedLine }} />;
-        }
-      }
-      
-      // Handle bold text (**text**)
-      processedLine = processedLine.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      
-      // If the line is empty, return a break
-      if (line.trim() === '') {
-        return <br key={index} />;
-      }
-      
-      // For list items, wrap in appropriate container
-      if (index > 0 && lines[index - 1].startsWith('- ') && !line.startsWith('- ')) {
-        return null; // Skip, as we'll handle lists together
-      }
-      
-      // Group bullet points into ul elements
-      if (line.startsWith('- ')) {
-        let listItems = [line];
-        let i = index + 1;
+        const start = i;
+        const items: string[] = [];
         while (i < lines.length && lines[i].startsWith('- ')) {
-          listItems.push(lines[i]);
+          items.push(lines[i].substring(2));
           i++;
         }
-        
-        if (index === 0 || !lines[index - 1].startsWith('- ')) {
-          return (
-            <ul key={index} className="blog-list">
-              {listItems.map((item, idx) => <li key={`${index}-${idx}`}>{item.substring(2)}</li>)}
-            </ul>
-          );
-        }
-        return null;
+        blocks.push(
+          <ul key={start} className="plain-list">
+            {items.map((item, idx) => <li key={idx}>{item}</li>)}
+          </ul>
+        );
+        continue;
       }
-      
-      // Group numbered lists
+
       if (/^\d+\.\s/.test(line)) {
-        let listItems = [line];
-        let i = index + 1;
+        const start = i;
+        const items: string[] = [];
         while (i < lines.length && /^\d+\.\s/.test(lines[i])) {
-          listItems.push(lines[i]);
+          items.push(lines[i].replace(/^\d+\.\s/, ''));
           i++;
         }
-        
-        if (index === 0 || !/^\d+\.\s/.test(lines[index - 1])) {
-          return (
-            <ol key={index} className="blog-list">
-              {listItems.map((item, idx) => {
-                const content = item.replace(/^\d+\.\s/, '');
-                return <li key={`${index}-${idx}`}>{content}</li>;
-              })}
-            </ol>
-          );
-        }
-        return null;
+        blocks.push(
+          <ol key={start} className="plain-list">
+            {items.map((item, idx) => <li key={idx}>{item}</li>)}
+          </ol>
+        );
+        continue;
       }
-      
-      // Parse bold text
-      if (processedLine.includes('<strong>')) {
-        return <p key={index} dangerouslySetInnerHTML={{ __html: processedLine }} />;
+
+      if (line.startsWith('## ')) {
+        blocks.push(<h2 key={i}>{line.substring(3)}</h2>);
+      } else if (line.trim() === '') {
+        blocks.push(<br key={i} />);
+      } else {
+        const html = inline(line);
+        blocks.push(
+          html === line ? <p key={i}>{line}</p> : <p key={i} dangerouslySetInnerHTML={{ __html: html }} />
+        );
       }
-      
-      // Default: return as paragraph
-      return <p key={index}>{line}</p>;
-    });
+      i++;
+    }
+
+    return blocks;
   };
-  
+
   return (
     <div className="blog-post-page">
       <Header />

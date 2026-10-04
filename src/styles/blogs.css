@@ -217,3 +217,9 @@
 .read-more-link:hover {
   background-color: #555;
 }
+/* Lists without the boxed .blog-list look: markers hang in the margin, one item per line */
+.blog-post-content ul.plain-list,
+.blog-post-content ol.plain-list {
+  margin: 0;
+  padding: 0;
+}

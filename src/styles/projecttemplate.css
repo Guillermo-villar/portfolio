@@ -177,6 +177,8 @@
 .circle.blockchain { background-color: #f8d700; }
 .circle.machine-learning { background-color: #ff9800; }
 .circle.statistics { background-color: #4CAF50; }
+.circle.pyca { background-color: #3776ab; }
+.circle.sqlite { background-color: #0f80cc; }
 .circle.numpy { background-color: #4DABCF; }
 .circle.matplotlib { background-color: #11557C; }
 .circle.git { background-color: #F05032; }

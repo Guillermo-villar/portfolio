@@ -5,10 +5,12 @@
   background-color: #333;
   color: white;
   padding: 1rem;
-  min-height: 40px;
+  min-height: 72px;
   position: fixed;
   top: 0;
+  box-sizing: border-box;
   width: 100%;
+  text-align: left;
   z-index: 1000;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
@@ -148,21 +150,6 @@
   color: #0077b5;
 }
 
-.cv-link {
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  font-size: 1.6rem !important;
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-  transform: translateY(-3px);
-}
-
-.cv-link:hover {
-  color: #0077b5;
-  text-decoration: none !important;
-}
-
 /* Estilos para móviles - se aplican solo en pantallas pequeñas */
 .menu-toggle {
   display: none; /* Oculto por defecto, visible solo en móviles */
@@ -183,6 +170,7 @@
   .header {
     flex-direction: column;
     padding: 0.5rem 1rem;
+    min-height: 56px;
     align-items: stretch;
   }
   

@@ -6,8 +6,10 @@ import Footer from '../components/Footer';
 import ExperienceList from '../components/ExperienceList';
 import Skills from '../components/Skills';
 import '../styles/home.css';
+import { useDocumentTitle } from '../useDocumentTitle';
 
 const Home: React.FC = () => {
+  useDocumentTitle();
   const interests = [
     {
       title: "Machine Learning",
