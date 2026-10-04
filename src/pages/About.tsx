@@ -15,32 +15,38 @@ const About: React.FC = () => {
           <h1>About Me</h1>
           <div className="about-details">
             <p>
-              I'm a Computer Science Engineer from Universidad Carlos III de Madrid, currently in AXA's Graduate
-              Tech program, with experience across applied AI, data pipelines, automation and software quality.
+              Computer Science Engineer (UC3M), currently in AXA's Graduate Tech program in Madrid, a full-time
+              rotational scheme working on AI and data projects across technical departments.
             </p>
             <p>
-              I have built backend APIs, integrated external data sources, and shipped end-to-end projects from
-              ambiguous requirements to working products. I enjoy learning unfamiliar domains quickly and keeping up
-              with state-of-the-art agentic AI engineering practices, models and techniques, adapting them to
-              regulated environments.
+              My academic journey includes an exchange year at San Francisco State University, taking master's-level
+              courses co-taught by professionals from OpenAI, IBM and other Bay Area companies. My Bachelor's thesis
+              received the maximum grade and was nominated for honours distinction.
             </p>
             <p>
-              I spent a year at San Francisco State University, taking master-level courses taught by professionals
-              from OpenAI, Intel, IBM and VMware, which is where my AI explainability research started.
+              I seek to develop high-impact solutions at the intersection of technology, business and product. In my
+              free time I explore AI and agentic coding tools, taking ideas into working products and testing them
+              through hackathons and independent builds.
             </p>
 
-            <h2>Awards &amp; Recognition</h2>
+            <h2>Education</h2>
             <ul>
-              <li>Winner of the II Circular Innovation Hackathon (Mallorca) and Telefónica's Web3 Hackathon, the largest in Spain.</li>
-              <li>Santander Bank Erasmus+ Scholarship (2023), awarded for outstanding GPA.</li>
-              <li>Multiple Honors in AI Explainability and Ethics, Interactive and Ubiquitous Systems, Human-Computer Interaction, Computer Networks and Deep Learning.</li>
-              <li>Only student to obtain a C2 grade in the Cambridge Advanced English test in Comunidad de Madrid's extraordinary under-16 public round.</li>
+              <li>
+                <strong>BSc in Computer Science Engineering, Universidad Carlos III de Madrid</strong> (2021 – 2025).
+                Graduated in the top 10% of the cohort. Bachelor's thesis on applying AI to research, awarded the
+                maximum grade and nominated for honours distinction.
+              </li>
+              <li>
+                <strong>Exchange Year, San Francisco State University</strong> (Aug 2023 – Jun 2024). Passed a
+                qualifying exam to take master's-level courses as an undergraduate, co-taught by Bay Area
+                professionals from IBM and OpenAI. Began the AI project that turned into my bachelor's thesis.
+              </li>
             </ul>
 
-            <h2>Languages &amp; Training</h2>
+            <h2>Recognition &amp; Languages</h2>
             <ul>
-              <li><strong>Languages:</strong> Spanish (native), English C2 (Cambridge, 8/9 IELTS), French (basic).</li>
-              <li><strong>Courses:</strong> Amazon DeepRacer AI &amp; ML (2024), ICAI Videogame Development Course.</li>
+              <li>Multiple hackathon winner: HackSpain (2026), Qubic &amp; Vottun Madrid Hackathon (2025), and II Circular Innovation Hackathon (Mallorca).</li>
+              <li><strong>Languages:</strong> Spanish (native), English C2 (Cambridge; IELTS 8/9).</li>
             </ul>
 
             <div className="about-links">

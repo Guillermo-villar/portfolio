@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
         }}
       />
       <h1>Guillermo Villar Sánchez</h1>
-      <p>Passionate developer.</p>
+      <p>Computer Science Engineer (UC3M) · AXA Tech Graduate Program</p>
       <p>Discover my projects, read my blog, and learn more about me.</p>
     </div>
   );
